@@ -2,86 +2,42 @@
 
 int main(void)
 {
-	//정수형 변수 k 값 출력하기
-	int k;
-	k = 15;
-	printf("%d\n", k);
+	/*
+	//개 만들기
+	printf("|\\_/|\n");
+	printf("|q p|   /}\n");
+	printf("( 0 )\"\"\"\\\n");
+	printf("|\"\^\"`    |\n");
+	printf("||_/=\\\\__|\n");
+	
+
+	//달러 원화 교환하기
+	float usd;
+	float krw;
+
+	printf("달러화 금액을 입력하시오: ");
+	scanf_s("%f", &usd);
+
+	krw = 1120.0 * usd;
+
+	printf("달러화 %0.2f달러는 %0.2f원입니다.\n", usd, krw);
 
 
-	//A+B
-	int A;
-	int B;
-	int sum;
+	//integar.c
+	short year = 0;
+	int sale = 0;
+	long total_sale = 0;
+	long long large_value;
 
-	A = 1;
-	B = 2;
-	sum = A + B;
+	year = 10;
+	sale = 200000000;
+	total_sale = year * sale;
 
-	printf("%d\n", sum);
-
-
-	//A-B
-	int A;
-	int B;
-	int result;
-	//뺴기 변수 이름 짓기 오비에게 헬프
-
-	A = 3;
-	B = 2;
-	result = A - B;
-
-	printf("%d\n", result);
+	printf("total_sale = %d \n", total_sale);*/
 
 
-	//AxB
-	int A;
-	int B;
-	int result;
+	//overflow.c
 
-	A = 1;
-	B = 2;
-	result = A * B;
-
-	printf("%d\n", result);
-
-	int A;
-	int B;
-	int result;
-
-	A = 3;
-	B = 4;
-	result = A * B;
-
-	printf("%d\n", result);
-
-
-	//A/B
-	int A;
-	int B;
-	double result;
-
-	A = 1;
-	B = 3;
-	result = A / B;
-
-	printf("%f", result);
-	//소수점이 안 나와옴
-
-
-	//사칙연산
-	int A;
-	int B;
-	int sum, subtraction, mutiply, devision, mod;
-
-	A = 7;
-	B = 3;
-	sum = A + B;
-	subtraction = A - B;
-	mutiply = A * B;
-	devision = A / B;
-	mod = A % B;
-
-	printf("%d\n%d\n%d\nd\n%d\n", sum, subtraction, mutiply, devision, mod);
 
 	return 0;
 }
