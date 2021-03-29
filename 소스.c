@@ -1,42 +1,17 @@
 #include <stdio.h>
+#include <limits.h> //이 파일은 무엇인가 -> 각 자료형의 최대값과 최소값을 정의해둔 헤더파일
 
 int main(void)
 {
-	/*
-	//개 만들기
-	printf("|\\_/|\n");
-	printf("|q p|   /}\n");
-	printf("( 0 )\"\"\"\\\n");
-	printf("|\"\^\"`    |\n");
-	printf("||_/=\\\\__|\n");
-	
+	short s_money = SHRT_MAX; //<limits.>를 포함하지 않으면 선언되지 않은 식별자로 뜸
+	unsigned short u_money = USHRT_MAX; 
 
-	//달러 원화 교환하기
-	float usd;
-	float krw;
+	s_money = s_money + 1;
+	printf("s_money = %d\n", s_money);
 
-	printf("달러화 금액을 입력하시오: ");
-	scanf_s("%f", &usd);
+	u_money = u_money + 1;
+	printf("u_money = %d\n", u_money);
 
-	krw = 1120.0 * usd;
-
-	printf("달러화 %0.2f달러는 %0.2f원입니다.\n", usd, krw);
-
-
-	//integar.c
-	short year = 0;
-	int sale = 0;
-	long total_sale = 0;
-	long long large_value;
-
-	year = 10;
-	sale = 200000000;
-	total_sale = year * sale;
-
-	printf("total_sale = %d \n", total_sale);*/
-
-
-	//overflow.c
 
 
 	return 0;
