@@ -1,16 +1,36 @@
 #include <stdio.h>
-#include <limits.h> //이 파일은 무엇인가 -> 각 자료형의 최대값과 최소값을 정의해둔 헤더파일
+#define TAX_RATE 0.2
 
 int main(void)
 {
-	short s_money = SHRT_MAX; //<limits.>를 포함하지 않으면 선언되지 않은 식별자로 뜸
-	unsigned short u_money = USHRT_MAX; 
+	//sym_const.c
+	const int MONTH = 12;
+	int m_salary, y_salary;
 
-	s_money = s_money + 1;
-	printf("s_money = %d\n", s_money);
+	printf("월급을 입력하시오: ");
+	scanf_s("%d", &m_salary);
 
-	u_money = u_money + 1;
-	printf("u_money = %d\n", u_money);
+	y_salary = MONTH * m_salary;
+	printf("연봉은 %d입니다.", y_salary);
+	printf("세금은 %f입니다.", y_salary*TAX_RATE);
+
+	//보수
+	int x = 3;
+	int y = -3;
+
+	printf("x = %08X\n", x);
+	printf("y = %08X\n", y);
+	printf("x+y = %08X\n", x+y);
+
+
+	//A/B
+	int A = 1;
+	int B = 3;
+	float div;
+
+	div = A / B;
+
+	printf("%f", div); //안 됨,,,
 
 
 
