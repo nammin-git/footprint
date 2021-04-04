@@ -1,58 +1,49 @@
 #include <stdio.h>
 
+/*
+int sum(int num1, int num2)
+{
+	int result;
+
+	result = num1 + num2;
+	return result;
+}
+
 int main(void)
-{/*
-	//정수연산
-	int x, y, result;
+{
+	int num1, num2, result;
 
-	printf("두 개의 정수를 입력하시오: ");
-	scanf_s("%d %d", &x, &y);
+	scanf_s("%d %d", &num1, &num2);
 
-	result = x + y;
-	printf("%d + %d = %d\n", x, y, result);
-
-	result = x - y;
-	printf("%d - %d = %d\n", x, y, result);
-
-	result = x * y;
-	printf("%d * %d = %d\n", x, y, result);
-
-	result = x / y;
-	printf("%d / %d = %d\n", x, y, result);
-
-	result = x % y;
-	printf("%d %% %d = %d\n", x, y, result);
-
-
-	//실수 연산
-	double x, y, result;
-
-	printf("두 개의 실수를 입력하시오: ");
-	scanf_s("%lf %lf", &x, &y);
-
-	result = x + y;
-	printf("%lf + %lf = %lf\n", x, y, result);
-
-	result = x - y;
-	printf("%lf - %lf = %lf\n", x, y, result);
-
-	result = x * y;
-	printf("%lf * %lf = %lf\n", x, y, result);
-
-	result = x / y;
-	printf("%lf / %lf = %lf\n", x, y, result);
-	*/
-
-	//A/B
-	double a = 1;
-	double b = 3;
-	double result;
-
-	a = 1;
-	b = 3;
-	result = a / b;
-
-	printf("%lf", result);
+	result = sum(num1, num2);
+	printf("%d + %d = %d", num1, num2, result);
 
 	return 0;
 }
+
+
+int put_num(void)
+{
+	int student_num;
+
+	scanf_s("%d", &student_num);
+	return student_num;
+}
+
+int out_num(int student_num)
+{
+	printf("%d", student_num);
+	return student_num;
+}
+
+int main(void)
+{
+	int student_num;
+
+	student_num = put_num();
+	
+	out_num(student_num);
+	
+	return 0;
+}
+*/
