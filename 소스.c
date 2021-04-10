@@ -1,147 +1,5 @@
 #include <stdio.h>
 
-//get_max.c
-int get_max(int x, int y)
-{
-	if (x > y)
-		return (x);
-	else
-		return (y);
-}
-
-int main(void)
-{
-	int x, y;
-
-	printf("정수 두 개를 입력하시오: ");
-	scanf_s("%d %d", &x, &y);
-
-	printf("%d", get_max(x, y));
-
-	return 0;
-}
-
-
-
-//draw_star.c
-void draw_star(int side)
-{
-	int x, y;
-
-	for (y = 0; y < side; y++)
-	{
-		for(x = 0; x <side; x++)
-			printf("*");
-		printf("\n");
-
-	}
-		
-	
-}
-
-int main(void)
-{
-	int side;
-
-	printf("사각형의 한 변을 만들기 위한 별의 갯수를 입력하시오: ");
-	scanf_s("%d", &side);
-
-	draw_star(side);
-
-	return 0;
-}
-
-
-//power.c
-int power(int x, int y)
-{
-	int i;
-	long result =1;
-
-	for (i = 0; i < y; i++)
-	{
-		result *= x;
-	}
-	return result;
-}
-
-int main(void)
-{
-	int x, y;
-
-	printf("거듭제곱할 수를 입력하시오: ");
-	scanf_s("%d", &x);
-	printf("거듭제곱할 횟수를 입력하시오(지수를 입력하시오): ");
-	scanf_s("%d", &y);
-
-	printf("%d", power(x, y));
-	
-
-	return 0;
-}
-
-
-//square.c 호출
-int square(int n);
-
-int main(void)
-{
-	int result;
-	
-	result = square(5);
-	printf("%d \n", result);
-
-	return 0;
-}
-
-int square(int n)
-{
-	return n * n;
-}
-
-
-
-//power.c 호출
-int get_integer(void);
-int power(int x, int y);
-
-int main(void)
-{
-	int a, b;
-
-	a = get_integer();
-	b = get_integer();
-
-	printf("%d의 %d승은 %d입니다.\n", a, b, power(a, b));
-
-	return 0;
-}
-
-int get_integer(void)
-{
-	int n;
-
-	printf("정수를 입력하시오: ");
-	scanf_s("%d", &n);
-
-	return n;
-}
-
-int power(int x, int y)
-{
-	int i;
-	long result = 1;
-
-	for(i = 0; i < y; i++)
-	{
-		result *= x;
-	}
-
-
-	return result;
-}
-
-
 //사칙연산 계산기
 int sum(int x, int y)
 {
@@ -185,6 +43,8 @@ int main(void)
 }
 
 
+
+
 //학생 성적 평균과 합산 계산기
 int add(int kor, int eng, int math, int soc, int sci)
 {
@@ -218,6 +78,186 @@ int main(void)
 
 	printf("5과목 성적의 합산은 %d입니다.\n", add(kor, eng, math, soc, sci));
 	printf("5과목 성적의 평균은 %d입니다.", average(add(kor, eng, math, soc, sci)));
+
+
+	return 0;
+}
+
+
+
+
+//power.c 호출
+
+int power(int x, int y)
+{
+	int i;
+	int result = 1;
+	
+	for (i = 0; i < y; i++)
+	{
+		result *= x;
+	}
+
+	return result;
+}
+
+int get_integer(void)
+{
+	int x;
+
+	printf("정수를 입력하시오: ");
+	scanf_s("%d", &x);
+
+	return x;
+}
+
+int main(void)
+{
+	int x, y;
+
+	x = get_integer();
+	y = get_integer();
+
+	printf("%d의 %d승은 %d입니다.", x, y, power(x, y));
+
+	return 0;
+}
+
+
+
+
+
+long factorial(int n)
+{
+	int i;
+	long result = 1;
+
+	for (i = 1; i < n; i++)
+		result *= i;
+
+	return result;
+}
+
+int main()
+{
+	int n;
+
+	printf("정수를 입력하시오: ");
+	scanf_s("%d", &n);
+
+	printf("%d의 팩토리얼은 %d입니다.", n, factorial(n));
+
+
+	return 0;
+}
+
+
+
+
+
+//combination.c
+int get_integer(void)
+{
+	int x;
+
+	printf("정수를 입력하시오: ");
+	scanf_s("%d", x);
+
+	return x;
+}
+
+int combination(int n, int r)
+{
+
+	return 0;
+}
+
+
+//증감연산자
+x = 1;
+y = ++x;
+//y=2, x=2
+
+y = x++;
+//y=2, x=3
+
+y = --x;
+//y=2, x=2
+
+y = x-- ;
+//y=2, x=1
+
+
+//1. x++ = x + 1
+//2. x++는 x값을 출력 후 값을 증가시킴, ++x는 증가된 값을 출력
+//3. 출력값은 13, x = 11
+
+
+//abbr.c
+int main()
+{
+	int x = 10, y = 10, z = 33;
+
+	x += 1;
+	y *= 2;
+	z %= 10 + 20;
+
+	printf("x= %d y=%d z=%d\n", x, y, z);
+
+	return 0;
+}
+
+
+
+
+int main(void)
+{
+
+	int x, y;
+
+	printf("두개의 정수를 입력하시오: ");
+	scanf_s("%d%d", &x, &y);
+
+	printf("x == y의 결과값: %d\n", x == y);
+	printf("x != y의 결과값: %d\n", x != y);
+	printf("x > y의 결과값: %d\n", x > y);
+	printf("x < y의 결과값: %d\n", x < y);
+	printf("x >= y의 결과값: %d\n", x >= y);
+	printf("x <= y의 결과값: %d\n", x <= y);
+
+	return 0;
+}
+
+
+//1. (age >= 25) && (y_salary >= 3500)
+//2. 참
+//3. 0
+//4. (++x < 5) || (3 < 2}
+
+int main(void)
+{
+	int x, y;
+
+	printf("첫 번째 수: ");
+	scanf_s("%d", &x);
+	printf("두 번째 수: ");
+	scanf_s("%d", &y);
+
+	printf("큰 수 = %d\n", (x > y) ? x : y);
+	printf("작은 수 = %d\n", (x < y) ? x : y);
+
+	return 0;
+}
+
+
+int main(void)
+{
+	int x;
+
+	printf("정수를 입력하시오: ");
+	scanf_s("%d", &x);
+
+	(x % 2) ? printf("홀수입니다.") : printf("짝수입니다.");
 
 
 	return 0;
