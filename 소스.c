@@ -1,57 +1,44 @@
 #include <stdio.h>
+/*
+//문제1. 학점 출력 프로그램
 
 int main(void)
 {
-	/*
 	int kor, eng, math, avg;
 
-	printf("국어, 영어, 수학 점수를 입력해주세요.\n");
+	printf("국어, 영어, 수학 점수를 입력해주세요:\n");
 	scanf_s("%d %d %d", &kor, &eng, &math);
 
 	avg = (kor + eng + math) / 3;
 
-	if (abg >= 90)
-		printf("A");
-	if elst()
-
-
-	int i;
-	printf("정수를 입력하세요:");
-	scanf_s("%d", &i);
-
-	if (i == 7)
-		printf("7을 입력했습니다.\n\n");
-
-
-	int a = 30;
-
-	if (a > 50)
-		printf("50보다 큰 수 입니다.\n");
-	else if (a == 50)
-		printf("50입니다.\n");
+	if (avg >= 90)
+		printf("A 학점");
+	else if (avg >= 80)
+		printf("B 학점");
+	else if (avg >= 70)
+		printf("C 학점");
 	else
-		printf("50보다 작은 수 입니다.\n");
+		printf("D 학점");
+
+	return 0;
+}
 
 */
-	int i;
-	
-	printf("값을 입력해주세요: ");
-	scanf_s("%d", &i);
+//문제2. 5의 판별 프로그램
 
-	switch (i) {
-	case 0:
-		printf("입력한 값은 0입니다.\n");
+int main(void)
+{
+	int x;
+
+	printf("1부터 100까지의 정수를 입력하세요: ");
+	scanf_s("%d", &x);
+
+	if ((x > 100) || (x < 1))
 		break;
-	case 1:
-		printf("1을 입력했습니다.\n");
-		break;
-	default:
-		printf("0, 1이 아닌 다른 수 입니다.\n");
-		break;
-
-	}
-
-
+	else if ((x % 5) == 0)
+		printf("%d는 5의 배수입니다.\n", x);
+	else
+		printf("%d는 5의 배수가 아닙니다.\n", x);
 
 	return 0;
 }
