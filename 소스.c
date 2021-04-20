@@ -1,7 +1,6 @@
 #include <stdio.h>
-
+/*
 int leapyear(int year);
-
 
 int main(void)
 {
@@ -150,4 +149,97 @@ int leapyear(int year)
 	result = (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);
 
 	return result;
+}
+*/
+
+int main(void)
+{
+	//다중 if문
+	int score;
+	
+	printf("점수를 입력하시오: ");
+	scanf_s("%d", &score);
+
+	if (score >= 80)
+		if (score >= 90)
+			printf("A 학점입니다.\n");
+		else
+			printf("B 학점입니다.\n");
+	else
+		printf("C학점입니다.\n");
+
+	if (score >= 80)
+	{
+		if (score >= 90)
+			printf("A 학점입니다.\n");
+		else
+			printf("B 학점입니다.\n");
+	}
+	else
+		printf("A학점이나 B학점은 아닙니다.\n");
+
+
+	//성적을 입력받아 학점을 결정하는 프로그램
+	int score;
+
+	printf("점수를 입력하시오: ");
+	scanf_s("%d", &score);
+
+	if (score >= 90)
+	{
+		printf("A학점입니다,\n");
+		printf("장학금을 받을 수 있습니다.\n");
+	}
+	else if (score >= 80)
+		printf("B학점입니다,\n");
+	else if (score >= 70)
+		printf("C학점입니다,\n");
+	else if (score >= 60)
+		printf("D학점입니다,\n");
+	else
+		printf("F학점입니다.\n");
+
+
+	//문자들을 분류하는 프로그램
+	char ch;
+
+	printf("영어 문자를 입력하시오: ");
+	scanf_s("%c", &ch);
+	//왜 경고 뜨지?
+
+	if (ch >= 'A' && ch <= 'Z')
+		printf("%c는 대문자입니다.", ch);
+	else if (ch >= 'a' && ch <= 'z')
+		printf("%c는 소문자입니다.", ch);
+	else if (ch >= '0' && ch <= '9')
+		printf("%c는 숫자입니다.", ch);
+	else
+		printf("문자도 숫자도 아닙니다.");
+
+
+	//이차방정식
+	int a, b, c;
+	float dis, sol1, sol2;
+
+	printf("계수 a를 입력하시오: ");
+	scanf_s("%d", &a);
+
+	printf("계수 b를 입력하시오: ");
+	scanf_s("%d", &b);
+
+	printf("계수 c를 입력하시오: ");
+	scanf_s("%d", &c);
+
+	if (a == 0)
+	{
+		sol1 = sol2 = -(c / b);
+		printf("방정식의 근은 %d입니다.", sol1);
+	}
+	else if ((b * b - 4 * a * c) > 0)
+		printf("실근은 존재하지 않습니다.");
+	else
+		sol1=-b+
+
+
+	return 0;
 }
