@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-//»çÄ¢¿¬»ê °è»ê±â
+//ì‚¬ì¹™ì—°ì‚° ê³„ì‚°ê¸°
 
 int sum()
 {
@@ -15,7 +15,7 @@ int main(void)
 {
 	int num1, num2;
 	
-	printf("¼ıÀÚ µÎ °³¸¦ ÀÔ·ÂÇÏ½Ã¿À.(¾ê½Ã 2 3)");
+	printf("ìˆ«ì ë‘ ê°œë¥¼ ì…ë ¥í•˜ì‹œì˜¤.(ì–˜ì‹œ 2 3)");
 	scanf("%d %d, &num1, &num2"); 
 	
 	printf("sum()");
@@ -25,7 +25,7 @@ int main(void)
 }
 
 
- //º° 10°³ Ãâ·ÂÇÏ±â
+ //ë³„ 10ê°œ ì¶œë ¥í•˜ê¸°
 int main(void)
 {
 	int i;
@@ -60,7 +60,7 @@ int main(void)
 	return 0;
 }
 
-//x+y+z ¹İÈ¯ÇÏ´Â ¹®Àå ÀÛ¼º
+//x+y+z ë°˜í™˜í•˜ëŠ” ë¬¸ì¥ ì‘ì„±
 int add_triple(int x, int y, int z)
 {
 	return x+y+z;
@@ -79,7 +79,7 @@ int main(void)
 }
 
 
-//fabs Çì´õÇÔ¼ö Á¤ÀÇ
+//fabs í—¤ë”í•¨ìˆ˜ ì •ì˜
 double fabs(double f)
 {
 	return ;
