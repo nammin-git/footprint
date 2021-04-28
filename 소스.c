@@ -1,118 +1,74 @@
 #include <stdio.h>
+#include <limits.h>
 
 void main(void)
 {
-	//11. X보다 작은 수 출력하기
-	int N, X, x, i;
-
-	scanf_s("%d %d", &N, &X);
-
-	if (((N >= 1) && (N <= 10000)) && ((X >= 1) && (X <= 10000)))
-	{
-		for (i = 1; i <= N; i++)
-		{
-			scanf_s("%d", &x);
-
-			if (X > x)
-				printf("%d ", x);
-		}
-	}
-	//어떻게 된 거지...?
-
-
-	//for문을 이용하여 meter를 mile로 바꾸기
-	int meter, mile;
-
-	for (mile = 0; mile <= 2; mile++)
-	{
-		meter = 1609 * mile;
-		printf("%d마일은 %d미터입니다.\n", mile, meter);
-	}
-
-	//while문을 이용하여 meter를 mile로 바꾸기
-	int i = 0;
-
-	while (i < 3)
-	{
-		meter = i * 1609;
-		printf("%d마일은 %d미터입니다.\n", i, meter);
-		i++;
-	}
-
-
-	//while문을 이용하여 구구단 출력하기
+	//5개의 입력값을 더하는 함수
 	int n;
+	int result = 0;
 	int i = 1;
 
-	printf("출력하고 싶은 단: ");
-	scanf_s("%d", &n);
-
-	while (i <= 9)
+	while (i <= 5)
 	{
-		printf("%d * %d = %d\n", n, i, n * i);
+		printf("값을 입력하시오: ");
+		scanf_s("%d", &n);
+		result += n;
 		i++;
 	}
 
+	printf("합계는 %d입니다.\n", result);
 
-	//while문을 이용한 제곱값 출력 프로그램
-	int n;
-	
-	printf("==============================\n");
-	printf("    n             n의 제곱\n");
-	printf("==============================\n");
 
-	n = 1;
-	while (n <= 10)
+	//센티널을 사용하여 성적의 평균을 구하는 프로그램
+	int scr = 0, cnt = 0;
+	float sum = 0, avg;
+
+	printf("종료하려면 음수를 입력하시오.\n");
+
+	while (scr >= 0)
 	{
-		printf("%5d          %5d\n", n, n * n);
-		n++;
+		printf("성적을 입력하시오: ");
+		scanf_s("%d", &scr);
+
+		sum += scr;
+		cnt++;
 	}
 
+	sum = sum - scr;
+	cnt--;
 
-	//while문을 사용하여 1부터 n까지의 합 계산하기
-	int n, i, sum;
+	avg = sum / cnt;
+	printf("%d명의 학생의 성적의 평균값은 %f입니다.\n", cnt, avg);
 
-	printf("정수를 입력하시요: ");
-	scanf_s("%d", &n);
 
-	i = 1;
-	sum = 0;
-	while (i <= n)
+	//while문을 사용하여 최소값 찾는 프로그램
+	int n, min_value = INT_MAX;
+
+	printf("정수를 입력하시오.\n종료는 Ctrl+z\n");
+
+	while ((scanf_s("%d", &n)) != EOF)
 	{
-		sum += i;
-		i++;
+		if (n < min_value)
+			min_value = n;
 	}
 
-	printf("1부터 %d까지의 합은 %d입니다.\n", n, sum);
+	printf("최소값은 %d입니다.\n", min_value);
 
 
-	//while문을 이용하여 1~n 사이의 짝수들의 합 구하기
-	int n, sum, i;
+	//최대공약수 찾기
+	int num1, num2, x, y, r;
 
-	printf("정수를 입력하시오: ");
-	scanf_s("%d", &n);
+	printf("두 수를 입력하시오: ");
+	scanf_s("%d %d", &num1, &num2);
 
+	(num1 > num2) ? ((x = num1) && (y = num2)) : ((x = num2) && (y = num1));
 
-	i = 0;
-	sum = 0;
-	while (i <= n)
+	while (y != 0)
 	{
-		sum += i;
-		i = i + 2;
+		r = x % y;
+		x = y;
+		y = r;
 	}
 
-	printf("1부터 %d까지의 짝수들의 합은 %d입니다.\n", n, sum);
-
-	//나는 if문을 사용함
-	i = 1;
-	sum = 0;
-	while (i <= n)
-	{
-		if (i % 2 == 0)
-			sum += i;
-		i++;
-	}
-
-	printf("1부터 %d까지의 짝수들의 합은 %d입니다.\n", n, sum);
-
+	printf("%d와 %d의 최대공약수는 %d입니다.\n", num1, num2, x);
 }
