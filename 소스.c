@@ -1,74 +1,66 @@
 #include <stdio.h>
-#include <limits.h>
+#include <stdlib.h>
 
 void main(void)
 {
-	//5개의 입력값을 더하는 함수
-	int n;
-	int result = 0;
-	int i = 1;
+	//가위바위보 게임
+	int a;
+	int b = (rand() % 100);
 
-	while (i <= 5)
-	{
-		printf("값을 입력하시오: ");
-		scanf_s("%d", &n);
-		result += n;
-		i++;
+	printf("선택하시오(1: 가위 2: 바위 3: 보) ");
+	scanf_s("%d", &a);
+
+	if (a == b)
+		printf("비겼음\n");
+	else if (a - b == 1)
+		printf("사용자가 이김\n");
+	else if (a - b == -1)
+		printf("컴퓨터가 이김\n");
+	else if (a - b == 2)
+		printf("컴퓨터가 이김\n");
+	else if (a - b == -2)
+		printf("사용자가 이김\n");
+	else
+		printf("알맞은 숫자를 입력하시오.\n");
+	exit(0);
+	//****************난수가 발생이 안 되어 실패
+
+
+	//for문으로 Hello World 찍어내기
+	int i;
+
+	for (i = 0; i < 10; i++)
+		printf("Hello World\n");
+
+
+	//for문을 사용하여 1부터 10까지의 정수를 더하기
+	int i, sum = 0;
+
+	for (i = 1; i <= 10; i++) {
+		sum += i;
 	}
 
-	printf("합계는 %d입니다.\n", result);
+	printf("1부터 10까지의 총합은 %d입니다.\n", sum);
 
 
-	//센티널을 사용하여 성적의 평균을 구하는 프로그램
-	int scr = 0, cnt = 0;
-	float sum = 0, avg;
+	//for문을 사용하여 세제곱을 나열하는 프로그램
+	int n, i, pn;
 
-	printf("종료하려면 음수를 입력하시오.\n");
+	printf("정수를 입력하시오: ");
+	scanf_s("%d", &n);
 
-	while (scr >= 0)
-	{
-		printf("성적을 입력하시오: ");
-		scanf_s("%d", &scr);
+	printf("==================================\n");
+	printf("     n              n의 세제곱       \n");
+	printf("==================================\n");
 
-		sum += scr;
-		cnt++;
+	for (i = 1; i <= n; i++) {
+		pn = i * i * i;
+		printf("%6d", i);
+		printf("%20d\n", pn);
+	}
+	//변수 최소화
+	for (i = 1; i <= n; i++) {
+		printf("%6d              %6d\n", i, i * i * i);
 	}
 
-	sum = sum - scr;
-	cnt--;
-
-	avg = sum / cnt;
-	printf("%d명의 학생의 성적의 평균값은 %f입니다.\n", cnt, avg);
-
-
-	//while문을 사용하여 최소값 찾는 프로그램
-	int n, min_value = INT_MAX;
-
-	printf("정수를 입력하시오.\n종료는 Ctrl+z\n");
-
-	while ((scanf_s("%d", &n)) != EOF)
-	{
-		if (n < min_value)
-			min_value = n;
-	}
-
-	printf("최소값은 %d입니다.\n", min_value);
-
-
-	//최대공약수 찾기
-	int num1, num2, x, y, r;
-
-	printf("두 수를 입력하시오: ");
-	scanf_s("%d %d", &num1, &num2);
-
-	(num1 > num2) ? ((x = num1) && (y = num2)) : ((x = num2) && (y = num1));
-
-	while (y != 0)
-	{
-		r = x % y;
-		x = y;
-		y = r;
-	}
-
-	printf("%d와 %d의 최대공약수는 %d입니다.\n", num1, num2, x);
 }
