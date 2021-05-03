@@ -2,26 +2,59 @@
 
 void main(void)
 {
-	//별로 사각형 만들기
-	int side, i;
-	int j;
+	//반복을 이용한 팩토리얼 구하기 1
+	int n, i;
+	long fact=1;
 
-	printf("몇 개의 별로 한 변을 만들지 입력하시오: ");
-	scanf_s("%d", &side);
+	printf("정수를 입력하시오: ");
+	scanf_s("%d", &n);
 
-	//속이 빈 사각형	
+	for (i = 1; i <= n; i++)
+		fact *= i;
 	
-	printf("**************\n");
-	for (i = 0; i < side; i++)
-		printf("*            *\n");
-	printf("**************\n");
+	printf("%d!은 %d입니다.\n", n, fact);
 
-	//속이 찬 사각형              
-	for (i = 0; i < side; i++)
+
+	//반복을 이용한 팩토리얼 구하기 2
+	int n, i = 1;
+	long fact = 1;
+
+	printf("정수를 입력하시오: ");
+	scanf_s("%d", &n);
+
+	while (i <= n)
 	{
-		printf("*");
-		for (j = 0; j < side; j++)
-			printf("\n*");
+		fact *= i;
+		i++;
 	}
-	//실패
+	
+	printf("%d!은 %d입니다.\n", n, fact);
+
+
+	//중간점검
+	int i;
+	for (i = 1; i < 5; i++)
+		printf("%d ", 2 * i);
+	for (i = 10; i > 0; i = i - 2)
+		printf("Student%d\n", i);
+
+
+	//중첩 for문을 이용하여 *기호로 사각형 모양으로 출력하는 프로그램 1
+	int x, y;
+
+	for (y = 0; y < 5; y++)
+	{
+		for (x = 0; x < 10; x++)
+			printf("*");
+
+		printf("\n");
+	}
+
+
+	//중첩 for문을 이용하여 *기호로 사각형 모양으로 출력하는 프로그램 2
+	int x, y;
+
+	for (y = 0; y < 5; y++)
+	{
+
 }
