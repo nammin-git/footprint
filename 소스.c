@@ -1,63 +1,70 @@
 #include <stdio.h>
-#include <math.h>
-#include <conio.h>
 
 void main(void)
 {
-	//실수의 제곱근을 구하는 무한루프
-	double v;
-
+	//소문자를 대문자로 변경하는 프로그램
+	char letter;
+	
 	while (1) {
-		printf("실수값을 입력하시오: ");
-		scanf_s("%lf", &v);
-
-		if (v < 0.0)
-			break;
+		printf("소문자를 입력하세요: ");
+		scanf_s(" %c", &letter, 1); //공백문자 제외
 		
-		printf("%f의 제곱근은 %f입니다.\n", v, sqrt(v));
+		if (letter == 'Q')
+			break;
+		else if (letter < 'a' || letter>'z')
+			continue;
+
+		letter -= 32;
+		printf("변환된 대문자는 %c입니다.\n", letter);
 	}
+	
 
-
-	//goto문을 사용하여 반복문 빠져나오기
-	int x, y;
-
-	for (y = 1; y < 10000; y++) {
-		for (x = 1; x < 50; x++) {
-			if (_kbhit())
-				goto OUT;
-			printf("*");
-		}
-		printf("\n");
-	}
-
-	OUT;
-	//안 됨
-
-
-	//continue문 사용하기
+	//3의 배수를 걸러내는 프로그램
 	int i;
 
-	for (i = 0; i < 10; i++) {
+	for (i = 1; i < 10; i++) {
 		if (i % 3 == 0)
+			//break;
 			continue;
 		printf("%d ", i);
 	}
 
 
-	//소문자를 대문자로 바꾸는 프로그램
-	char letter;
+	//파이 구하기
+	int n, i;
+	double pi = 0.0;
+	double k = 1.0;
 
-	while (1) {
-		printf("소문자를 입력하시오: ");
-		scanf_s("%c", &letter, 1);
+	printf("반복 횟수를 입력하시오: ");
+	scanf_s("%d", &n);
 
-		if (letter == 'Q')
-			break;
-		if ((letter < 'a') || (letter > 'z'))
-			continue;
-		
-		letter -= 32;
-		printf("변환한 대문자는 %c입니다.\n", letter);
+	for (i = 0; i < n; i++) {
+		pi += 4.0 / k - 4.0 / (k + 2.0);
+		k = k + 4.0;
 	}
-	//소문자 입력문구가 두 번 나옴
+
+	printf("Pi = %f", pi);
+	//맞나? 숫자 다름
+
+	
+	//파이 구하기 2
+	int loop_count;
+	double pi = 3.0;
+	double k = 2.0;
+
+	printf("반복 횟수를 입력하시오: ");
+	scanf_s("%d", &loop_count);
+
+	while (loop_count > 0) {
+		if(loop_count%2==1)
+			pi += 4.0 / (k * (k + 1.0) * (k + 2.0));
+		else
+			pi -= 4.0 / (k * (k + 1.0) * (k + 2.0));
+		k = k + 2.0;
+		loop_count--;
+	}
+
+	printf("pi = %.20f\n", pi);
+
+
 }
