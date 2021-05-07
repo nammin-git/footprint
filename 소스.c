@@ -1,59 +1,77 @@
 #include <stdio.h>
-#define START_DAY 3
-#define DAYS_OF_MONTH 31
+/*
+//반복문 문제 1
+//입력값이 1부터 n까지 더한 값보다 클 때, n을 찾는 프로그램
 
+int sum(int num);
 
 void main(void)
 {
-	//복리 이자 계산
-	double seed_money, interest_rate, total;
-	int year, i = 0;
 
-	printf("원금: ");
-	scanf_s("%lf", &seed_money);
-	printf("이율(%%): ");
-	scanf_s("%lf", &interest_rate);
-	printf("기간(년): ");
-	scanf_s("%d", &year);
+	int num;
 
-	printf("==================\n");
-	printf("연도       원리금\n");
-	printf("==================\n");
+	printf("수를 입력해주세요: ");
+	scanf_s("%d", &num);
+	
+	printf("입력한 수보다 높을 때 합은 %d이고 1~%d번째까지 더한 수이다.\n", num + sum(num), sum(num));
+}
+//1-1. for 반복문
+int sum(int num)
+{
+	int i, result = 0;
 
-	total =	seed_money;
-	interest_rate = interest_rate / 100;
-
-	while (i < year) {
-		total *= (1 + interest_rate);
-		printf("%d         %.1f\n", i+1, total);
-		i++;
+	for (i = 1; ; i++) {
+		result += i;
+		if (result > num)
+			break; //break하면 ++이 안 되는 건가?
 	}
+	
+	return i;
+}
 
+//1-2. while 반복문
+int sum(int num)
+{
+	int i = 0 , result = 0;
 
-	//달력 출력하기
-	int day, date;
-
-	printf("=============================\n");
-	printf(" 일  월  화  수  목  금  토\n");
-	printf("=============================\n");
-
-	for (day = 0; day < START_DAY; day++)
-		printf("    ");
-
-	for (date = 1; date <= DAYS_OF_MONTH; date++) {
-		if (day == 7) {
-			day = 0;
-			printf("\n");
-		}
-		day++;
-		if (day == 0)
-			printf("%d ", date);
+	while (1) {
+		result += i;
+		if (result <= num)
+			i++;
 		else
-			printf("%3d ", date);
+			break;
 	}
 
-	printf("\n=============================\n");
-	//다시 해야함
+	return i;
+}
+*/
 
+//반복문 문제 2
+//1부터 입력값까지 정수를 역순으로 출력
+//3과 5의 공배수는 "n"으로 출력
 
+int Common_multiple(int n);
+
+void main(void)
+{
+	int n;
+
+	printf("수를 입력해주세요: ");
+	scanf_s("%d", &n);
+
+	Common_multiple(n);
+}
+
+int Common_multiple(int n)
+{
+	int i;
+
+	for (i = n; n > 0; n--) {
+		printf("%d ", n);
+		if (n % 10 == 1)
+			printf("\n");
+		if ((n % 3 == 0) && (n % 5 == 0))
+			printf("\"%d\" ", n);
+	}
+	return;
 }
