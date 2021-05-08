@@ -1,77 +1,83 @@
 #include <stdio.h>
-/*
-//반복문 문제 1
-//입력값이 1부터 n까지 더한 값보다 클 때, n을 찾는 프로그램
-
-int sum(int num);
+#include <stdlib.h>
 
 void main(void)
 {
-
-	int num;
-
-	printf("수를 입력해주세요: ");
-	scanf_s("%d", &num);
-	
-	printf("입력한 수보다 높을 때 합은 %d이고 1~%d번째까지 더한 수이다.\n", num + sum(num), sum(num));
-}
-//1-1. for 반복문
-int sum(int num)
-{
-	int i, result = 0;
-
-	for (i = 1; ; i++) {
-		result += i;
-		if (result > num)
-			break; //break하면 ++이 안 되는 건가?
-	}
-	
-	return i;
-}
-
-//1-2. while 반복문
-int sum(int num)
-{
-	int i = 0 , result = 0;
+	//반복문 문제 3
+	//나이에 따라 지원금 지급하기
+	int age, i = 0;
+	int elderly = 0, adult = 0, juvenile = 0, kid = 0;
 
 	while (1) {
-		result += i;
-		if (result <= num)
-			i++;
-		else
+		printf("가족 구성원의 나이를 입력해주세요 (0 입력 시 종료): ");
+		scanf_s("%d", &age);
+
+		if (age==0)
 			break;
+
+		if ((age >= 1) && (age <= 12))
+			kid++;
+		else if ((age >= 13) && (age <= 19))
+			juvenile++;
+		else if ((age >= 20) && (age <= 64))
+			adult++;
+		else if ((age >= 65))
+			elderly++;
+
+		i++;
 	}
 
-	return i;
-}
-*/
+	printf("..조사종료..\n<귀댁의 가족 구성>\n");
+	printf("총 %d명 노인 %d명, 성인 %d명, 청소년 %d명, 아동 %d명\n", i, elderly, adult, juvenile, kid);
+	printf("코로나 지원금은 총 %d만원 입니다.\n", 10*elderly+20*(juvenile+kid));
 
-//반복문 문제 2
-//1부터 입력값까지 정수를 역순으로 출력
-//3과 5의 공배수는 "n"으로 출력
 
-int Common_multiple(int n);
+	//이중 반복문 문제 1-1
+	//별로 탑 쌓기
+	int x, y;
 
-void main(void)
-{
-	int n;
-
-	printf("수를 입력해주세요: ");
-	scanf_s("%d", &n);
-
-	Common_multiple(n);
-}
-
-int Common_multiple(int n)
-{
-	int i;
-
-	for (i = n; n > 0; n--) {
-		printf("%d ", n);
-		if (n % 10 == 1)
-			printf("\n");
-		if ((n % 3 == 0) && (n % 5 == 0))
-			printf("\"%d\" ", n);
+	for (y = 1; y <= 5; y++) {
+		for (x = 1; x <= y; x++) {
+			printf("*");
+		}
+		printf("\n");	
 	}
-	return;
+
+
+	//이중 반복문 문제 1-2
+	//별로 거꾸로된 탑 쌓기
+	int x, y;
+
+	for (y = 5; y > 0; y--) {
+		for (x = 5; x >= y; x--)
+			printf("*");
+		printf("\n");
+	}
+	//안 됨
+
+
+	//이중 반복문 문제 2-1
+	//구구단 출력 가로버전
+	int table, n;
+
+	for (table = 1; table <= 9; table++) {
+		for (n = 1; n <= 9; n++) {
+			printf("%dx%d=%d ", table, n, table * n);
+		}
+		printf("\n");
+	}
+
+	//이중 반복문 문제 2-2
+	//구구단 출력 세로버전
+	int table, n;
+	for (n = 1; n <= 9; n++) {
+		for (table = 1; table <= 9; table++)
+			if (table*n<10)
+				printf("%dX%d=%d  ", table, n, table * n);
+			else
+				printf("%dX%d=%d ", table, n, table * n);
+		printf("\n");
+	}
+
+
 }
