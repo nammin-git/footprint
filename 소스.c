@@ -1,125 +1,79 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 void main(void)
 {
 	//반복문 문제 3
 	//나이에 따라 지원금 지급하기
-	int age = 1;
-	int sinior = 0, adult = 0, teenager = 0, junior = 0;
+	int age;
+	int elderly = 0, adult = 0, teenager = 0, kid = 0;
 
-	while (1) {
-		if (age != 0) {
-			printf("가족 구성원의 나이를 입력해주세요(0 입력시 종료): ");
-			scanf_s("%d", &age);
-		}
-		else
-			break;
+	do {
+		printf("가족 구성원의 나이를 입력해주세요(0 입력 시 종료): ");
+		scanf_s("%d", &age);
 		if ((age >= 1) && (age <= 12))
-			junior++;
-		else if ((age >= 12) && (age <= 19))
+			kid++;
+		else if ((age >= 13) && (age <= 19))
 			teenager++;
 		else if ((age >= 20) && (age <= 64))
 			adult++;
 		else if (age >= 65)
-			sinior++;
-	}
-	
-	printf("..조사 종료..\n총 %d명 노인 %d명, 성인 %d명, 청소년 %d명, 아동 %d명\n", sinior+adult+teenager+junior, sinior, adult, teenager, junior);
-	printf("코로나 지원금은 총 %d만원 입니다.\n", 10 * sinior + 20 * (teenager + junior));
+			elderly++;
+	} while (age != 0);
 
 
-	//이중 반복문 문제 3 - 1
-	//입력받은 수를 가지고 별 출력하기
-	int N, x, y;
-
-	printf("N을 입력하시오: ");
-	scanf_s("%d", &N);
-
-	for (y = 0; y < N; y++) {
-		for (x = 0; x <= y; x++)
-			printf("*");
-		printf("\n");
-	}
-
-	//이중 반복문 문제 3 - 2
-	//입력받은 수를 가지고 별 출력하기
-	int N, x, y;
-
-	printf("N을 입력하시오: ");
-	scanf_s("%d", &N);
-
-	for (y = N; y > 0; y--) {
-		for (x = 1; x <= y; x++)
-			printf("*");
-		printf("\n");
-	}
+	//do...while
+	int i = 10;
+	do {
+		printf("i = %d\n", i);
+		i++;
+	} while (i < 3);
 
 
-	//이중 반복문 문제 1 - 2
-	//별탑 반대로 쌓기
-	int x, y;
+	//do...while을 이용한 메뉴
+	int i = 0;
 
-	for (y = 5; y > 0; y--) {
-		for (x = 1; x <= y; x++)
-			printf("*");
-		printf("\n");
+	do {
+		printf("1---새로만들기\n");
+		printf("2---파일열기\n");
+		printf("3---파일닫기\n\n");
+		printf("하나를 선택하시오: ");
+		scanf_s("%d", &i);
+	} while (i < 1 || i>3);
+
+	printf("\n\n");
+
+	switch (i) {
+	case 1:
+		printf("1을 선택하셨습니다.\n새로만들기를 실행합니다.\n");
+		break;
+	case 2:
+		printf("2를 선택하셨습니다.\n파일열기를 실행합니다.\n");
+		break;
+	case 3:
+		printf("3을 선택하셨습니다.\n파일닫기를 실행합니다.\n");
+		break;
 	}
 
 
-	//이중 반복문 문제 4 - 1
-	//별 탑 오른쪽 정렬
-	int x, y, z;
+	//숫자 추측 게임
+	int answer = 59;
+	int guess;
+	int tries = 0;
 
-	for (y = 0; y < 5; y++) {
-		for (z = y; 5 - z > 0; z++)
-				printf(" ");
-		for (x = 0; x <= y; x++)
-			printf("*");
-						
-		printf("\n");
-	}
+	do {
+		printf("정답을 추측하여 보시오: ");
+		scanf_s("%d", &guess);
+		tries++;
 
+		if (guess > answer)
+			printf("제시한 정수가 높습니다.\n");
+		if (guess < answer)
+			printf("제시한 정수가 낮습니다.\n");
+	} while (guess != answer);
 
-	//이중 반복문 문제 4 - 1
-	//별 탑 오른쪽 정렬
-	int x, y, z;
-
-	for (y = 0; y < 5; y++) {
-		for (x = 0; x <= y; x++)
-			printf(" ");
-		for (z = y; 5 - z >0 ; z++)
-			printf("*");
-						
-		printf("\n");
-	}
+	printf("축하합니다. 정답입니다.\n시도횟수 %d번\n", tries);
 
 
-	//이중 반복문 문제 5
-	//별 기호로 마름모 모양 만들기
-	int x, y, z;
-
-	for (y = 1; y <= 9; y++) {
-		if (y < 5) {
-			for (z = y; 5 - z > 0; z++)
-				printf(" ");
-			for (x = 1; x <= 2*y-1; x++)
-				printf("*");
-			printf("\n");
-		}
-		else if (y == 5) {
-			for (x = 1; x <= 2 * y - 1; x++)
-				printf("*");
-			printf("\n");
-		}
-		else 
-		{
-			for (z = 10 - y; 5 - z > 0; z++)
-				printf(" ");
-			for (x = 1; x <= 19 - 2 * y; x++)
-				printf("*");
-			printf("\n");
-		}
-		//왜 19? 방정식으로 해보니까 식이 나오던데 왜 19인지 모름
-	}
 
 }
