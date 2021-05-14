@@ -1,118 +1,152 @@
 #include <stdio.h>
-#define START_DAY 6
-#define DATE_OF_MONTH 31
+#include <windows.h>
+
+void add();
+void sub();
+void mul();
+void divide();
+
 
 void main(void)
 {
-	//달력 만들기
-	int day, date;
+	//10초 후 경고 벨소리가 울리는 프로그램
+	int timer;
+	
+	for (timer = 10; timer > 0; timer--) {
+		printf("%d ", timer);
+		Sleep(1000);
+	}
+	printf("\a");
 
-	printf("============================\n");
-	printf(" 일  월  화  수  목  금  토\n");
-	printf("============================\n");
 
-	for (day = 0; day < START_DAY; day++)
-		printf("    ");
+	//시간을 지연시킬 목적의 반복문
+	int t;
 
-	for (date = 1; date <= DATE_OF_MONTH; date++) {
-		if (day == 7) {
-			day = 0;
-			printf("\n");
-		}
-		day++;
-		printf("%3d ", date);
-		if (date == DATE_OF_MONTH)
-			printf("\n");
+	printf("카운터의 초기값을 입력하시오: ");
+	scanf_s("%d", &t);
+
+	for (; t > 0; t--) {
+		printf("%d ", t);
+		Sleep(1000);
 	}
 
-	printf("============================\n");
+	printf("\a");
 
 
-	//"Hello World"가 몇 번 출력되는가
-	int x;
-	for (x = 0; x < 10; x++) {
-		if (x < 5)
-			continue;
-		else
+	//계산 유형을 선택할 수 있는 계산기 프로그램
+	//for 버전
+	int num1, num2;
+	char calculator;
+	int result = 0;
+
+	printf("****************\n");
+	printf("A---- Add\n");
+	printf("S---- Subtract\n");
+	printf("M---- Multiply\n");
+	printf("D---- Divide\n");
+	printf("Q---- Quiz\n");
+	printf("****************\n\n");
+
+	while (1) {
+	printf("연산을 선택하시오: ");
+	scanf_s(" %c", &calculator, 1);
+	if (calculator == 'Q')
+		break;
+
+	if (!(calculator == 'A') && !(calculator == 'S') && !(calculator == 'M') && !(calculator == 'D'))
+		continue;
+
+	printf("두 수를 공백으로 분리하여 입력하시오: ");
+	scanf_s("%d %d", &num1, &num2);
+
+	if (calculator == 'A')
+		result = num1 + num2;
+	else if (calculator == 'S')
+		result = num1 - num2;
+	else if (calculator == 'M')
+		result = num1 * num2;
+	else if (calculator == 'D')
+		result = num1 / num2;
+	else
+		continue;
+
+	printf("연산의 결과는 %d입니다.\n\n", result);
+	}
+
+
+	//do...while 버전
+	char op;
+
+	printf("****************\n");
+	printf("A---- Add\n");
+	printf("S---- Subtract\n");
+	printf("M---- Multiply\n");
+	printf("D---- Divide\n");
+	printf("Q---- Quiz\n");
+	printf("****************\n\n");
+
+	do {
+		printf("연산을 선택하시오: ");
+		scanf_s(" %c", &op, 1);
+
+		switch (op) {
+		case 'A':
+		case'a':
+			add();
 			break;
-		printf("Hello World!\n");
-	}
+		case 'S':
+		case's':
+			sub();
+			break;
+		case 'M':
+		case'm':
+			mul();
+			break;
+		case 'D':
+		case'd':
+			divide();
+			break;
+		case 'Q':
+		case'q':
+			break;
+		default:
+			continue;
+		}
+	} while ((op != 'Q') && (op != 'q'));
 
-	int x, y;
-	for (x = 0; x < 3; x++)
-		for (y = 2; y >= 0; y--)
-			printf("*");
+}
 
-	int i = 5;
-	for (; i; i--)
-		printf("%d", i);
+void add(){
+	int num1, num2;
 
+	printf("두수를 공백으로 분리하여 입력하시오: ");
+	scanf_s("%d %d", &num1, &num2);
+	printf("연산의 결과는 %d입니다.\n\n", num1 + num2);
+}
 
-	//시그마
-	int i, sum = 0, result = 0;
+void sub() {
+	int num1, num2;
 
-	for (i = 1; i <= 30; i++) {
-		sum = i * i + 1;
-		result += sum;
-	}
+	printf("두수를 공백으로 분리하여 입력하시오: ");
+	scanf_s("%d %d", &num1, &num2);
+	printf("연산의 결과는 %d입니다.\n\n", num1 - num2);
 
-	printf("%d", result);
+}
 
+void mul() {
+	int num1, num2;
 
-	//1부터 100까지 모든 3의 배수의 합을 구하는 프로그램
-	int n, sum = 0;
+	printf("두수를 공백으로 분리하여 입력하시오: ");
+	scanf_s("%d %d", &num1, &num2);
+	printf("연산의 결과는 %d입니다.\n\n", num1 * num2);
 
-	//while 루프
-	n = 1;
-	while (3 * n <= 100) {
-		sum += 3 * n;
-		n++;
-	}
-	printf("1부터 100사이의 모든 3의 배수의 합은 %d입니다.\n", sum);
+}
 
-	//for 루프
-	for (n = 1; 3 * n <= 100; n++) {
-		sum += 3 * n;
-	}
-	
-	printf("1부터 100사이의 모든 3의 배수의 합은 %d입니다.\n", sum);
+void divide() {
+	int num1, num2;
 
-
-	//입력한 정수의 합을 계산하는 프로그램
-	int number, sum = 0;
-
-	while (scanf_s("%d", &number) != EOF) {
-		sum += number;
-	}
-	
-	printf("정수의 합은 %d입니다.\n", sum);
-
-
-	//반복 루프를 사용하여 패턴 출력하기
-	int x, y, z;
-	
-	for (y = 1; y <= 7; y++) {
-		for (z = 1; z <= 7 - y; z++)
-			printf(" ");
-		for (x = 1; x <= y; x++)
-			printf("*");
-		printf("\n");
-	}
-
-
-	//중첩 반목문을 사용하여 숫자로 탑 쌓기
-	int number;
-	int x, y;
-
-	printf("정수를 입력하시오: ");
-	scanf_s("%d", &number);
-
-	printf("\n");
-	
-	for (y = 1; y <= number; y++) {
-		for (x = 1; x <= y; x++)
-			printf("%d ", x);
-		printf("\n");
-	}
+	printf("두수를 공백으로 분리하여 입력하시오: ");
+	scanf_s("%d %d", &num1, &num2);
+	printf("연산의 결과는 %d입니다.\n\n", num1 / num2);
 
 }
