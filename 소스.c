@@ -1,59 +1,99 @@
 #include <stdio.h>
-#define SEED_MONEY 1000000
-#include <Windows.h>
 
-void add();
+int add7();
+void draw_star9(int n);
+void draw_star10(int n);
 
 void main(void)
 {
-	//몇 년 만에 원금의 10배가 되는지 출력하는 프로그램
-	int year;
-	double money;
-	money = SEED_MONEY;
+	//for 문 7번 문제
+	//A+B를 조금 더 아름답게 출력하는 문제
+	int T7, i;
+	
+	scanf_s("%d", &T7);
 
-	for (year = 0; ; year++) {
-		money += money * 0.3;
-		if (money > SEED_MONEY * 10)
-			break;
+	for (i = 1; i <= T7; i++) {
+		printf("Case #%d: %d\n", i, add7());
 	}
 
-	year++;
 
-	printf("%d\n", year);
+	//for 문 8번 문제
+	//A + B를 바로 위 문제보다 아름답게 출력하는 문제
+	int T8;
+	int num1, num2;
+
+	scanf_s("%d", &T8);
+
+	for (i = 1; i <= T8; i++) {
+		scanf_s("%d %d", &num1, &num2);
+		printf("Case #%d: %d + %d = %d\n", i, num1, num2, num1 + num2);
+	}
 
 
-	//for 반복문을 이용하여 A+B 출력
-	int n, i;
-	scanf_s("%d", &n);
+	//for 문 9번 문제
+	//별을 찍는 문제 1
+	int N9;
+
+	scanf_s("%d", &N9);
+
+	draw_star9(N9);
+
+
+	//for 문 10번 문제
+	//별을 찍는 문제 2
+	int N10;
+
+	scanf_s("%d", &N10);
+
+	draw_star10(N10);
+
+
+	//for 문 11번 문제
+	//for와 if를 같이 쓰는 문제
+	int N, X, i, input;
+
+	scanf_s("%d %d", &N, &X);
+
+	for (i = 1; i <= N; i++) {
+		scanf_s("%d", &input);
+		if (X <= input)
+			continue;
+		else
+			printf("%d ", input);
+	}
+
+
+}
+
+int add7() {
+	int num1, num2;
+
+	scanf_s("%d %d", &num1, &num2);
+
+	return num1 + num2;
+}
+
+void draw_star9(int n) {
+	int i, j;
 
 	for (i = 0; i < n; i++) {
-		add();
+		for (j = 0; j < n; j++)
+			if (i >= j)
+				printf("*");
+		printf("\n");
 	}
-
-
-	//빠른 A+B
-	long T, i;
-	scanf_s("%d", &T);
-
-	for (i = 0; i < T; i++) {
-		add();
-	}
-
-
-	//N부터 1까지 한 줄에 하나씩 출력하는 프로그램
-	int N, i;
-	scanf_s("%d", &N);
-
-	for (i = N; i > 0; i--) {
-		printf("%d\n", i);
-		Sleep(100);
-	}
-
-
 }
 
-void add(){
-	int num1, num2;
-	scanf_s("%d %d", &num1, &num2);
-	printf("%d\n", num1 + num2);
+void draw_star10(int n) {
+	int x, y;
+
+	for (y = 1; y <= n; y++) {
+		for (x = n; x > 0; x--)
+			if (x > y)
+				printf(" ");
+			else
+				printf("*");
+		printf("\n");
+	}
 }
+
