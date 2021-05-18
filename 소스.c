@@ -1,99 +1,88 @@
 #include <stdio.h>
 
-int add7();
-void draw_star9(int n);
-void draw_star10(int n);
+void draw_star(int N);
+void draw_star_ri(int N);
 
 void main(void)
-{
-	//for 문 7번 문제
-	//A+B를 조금 더 아름답게 출력하는 문제
-	int T7, i;
+{/*
+	//이중 반복문 문제 3
+	//*
+	//**
+	//***
+	int N;
+
+	printf("N을 입력하시오: ");
+	scanf_s("%d", &N);
+
+	draw_star(N);
 	
-	scanf_s("%d", &T7);
 
-	for (i = 1; i <= T7; i++) {
-		printf("Case #%d: %d\n", i, add7());
-	}
+	//이중 반복문 문제 4
+	//  *
+	// **
+	//***
+	int N;
 
+	printf("N을 입력하시오: ");
+	scanf_s("%d", &N);
 
-	//for 문 8번 문제
-	//A + B를 바로 위 문제보다 아름답게 출력하는 문제
-	int T8;
-	int num1, num2;
-
-	scanf_s("%d", &T8);
-
-	for (i = 1; i <= T8; i++) {
-		scanf_s("%d %d", &num1, &num2);
-		printf("Case #%d: %d + %d = %d\n", i, num1, num2, num1 + num2);
-	}
-
-
-	//for 문 9번 문제
-	//별을 찍는 문제 1
-	int N9;
-
-	scanf_s("%d", &N9);
-
-	draw_star9(N9);
-
-
-	//for 문 10번 문제
-	//별을 찍는 문제 2
-	int N10;
-
-	scanf_s("%d", &N10);
-
-	draw_star10(N10);
-
-
-	//for 문 11번 문제
-	//for와 if를 같이 쓰는 문제
-	int N, X, i, input;
-
-	scanf_s("%d %d", &N, &X);
-
-	for (i = 1; i <= N; i++) {
-		scanf_s("%d", &input);
-		if (X <= input)
-			continue;
-		else
-			printf("%d ", input);
-	}
-
-
-}
-
-int add7() {
-	int num1, num2;
-
-	scanf_s("%d %d", &num1, &num2);
-
-	return num1 + num2;
-}
-
-void draw_star9(int n) {
-	int i, j;
-
-	for (i = 0; i < n; i++) {
-		for (j = 0; j < n; j++)
-			if (i >= j)
-				printf("*");
-		printf("\n");
-	}
-}
-
-void draw_star10(int n) {
+	draw_star_ri(N);
+*/
+	
+	//이중 반복문 문제 5
+	//마름모 모양 만들기
 	int x, y;
 
-	for (y = 1; y <= n; y++) {
-		for (x = n; x > 0; x--)
-			if (x > y)
-				printf(" ");
-			else
+	for (y = 1; y <= 9; y++) {
+		if(y<=5)
+			for(x=1; x<=9; x+=2)
+				if
+	}
+
+}
+
+void draw_star(int N) {
+
+	int x, y;
+
+	//1~N
+	for (y = 1; y <= N; y++) {
+		for (x = 1; x <= N; x++)
+			if (x <= y)
+				printf("*");
+		printf("\n");
+	}
+
+	//N~1
+	for (y = 1; y <= N; y++) {
+		for (x = N; x > 0; x--)
+			if (x >= y)
 				printf("*");
 		printf("\n");
 	}
 }
 
+void draw_star_ri(int N) {
+	int x, y;
+
+	//1~N
+	for (y = 1; y <= N; y++) {
+		for (x = N; x > 0; x--)
+			if (x >= y)
+				printf("*");
+			else
+				printf(" ");
+		printf("\n");
+	}
+
+	//N~1;
+	for (y = 1; y <= N; y++) {
+		for (x = 1; x <= N; x++)
+			if (x >= y)
+				printf("*");
+			else
+				printf(" ");
+		printf("\n");
+	}
+
+}
