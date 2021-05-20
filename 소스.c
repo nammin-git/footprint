@@ -1,123 +1,134 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
-void draw_star(int N);
-void draw_star_ri(int N);
+#define MY_ID 5678
+#define MY_PW 7890
 
-void main(void)
+#define SUCCESS 1
+#define FAIL 2
+#define LIMIT 3
+
+int check(int id, int password);
+
+void sub();
+
+int main(void)
 {
-	//이중 반복문 문제 3
-	//*
-	//**
-	//***
-	int N;
-
-	printf("N을 입력하시오: ");
-	scanf_s("%d", &N);
-
-	draw_star(N);
+	//범위 - 지역 변수
+	int i = 0;
 	
-
-	//이중 반복문 문제 4
-	//  *
-	// **
-	//***
-	int N;
-
-	printf("N을 입력하시오: ");
-	scanf_s("%d", &N);
-
-	draw_star_ri(N);
-
-	
-	//이중 반복문 문제 5
-	//마름모 모양 만들기
-	int x, y;
-
-	for (y = 1; y <= 9; y++) {
-		for (x = 1; x <= 9; x++) {			
-			if ((y >= 1) && (y <= 5) && (x >= 1) && (x <= 5)) {
-				if (x > 5 - y)
-					printf("*");
-				else
-					printf(" ");
-			}
-			else if ((y >= 1) && (y <= 5) && (x > 5) && (x <= 9)) {
-				if (x - 4 <= y)
-					printf("*");
-				else
-					printf(" ");
-			}
-			else if ((y > 5) && (y <= 9) && (x >= 1) && (x <= 5)) {
-				if (x + 4 >= y)
-					printf("*");
-				else
-					printf(" ");
-			}
-			else if ((y > 5) && (y <= 9) && (x > 5) && (x <= 9)) {
-				if (x <= 14 - y)
-					printf("*");
-				else
-					printf(" ");
-			}
-		}
-		printf("\n");
+	for (i = 0; i < 5; i++) {
+		int temp = 1;
+		printf("temp = %d\n", temp);
+		temp++; //중괄호는 블록 -> 지역 변수 temp는 매번 새로 시작
 	}
 
-	 
-	//난수 발생 함수
+	printf("\n===============\n");
+
+	while (i < 10) {
+		int temp = 0;
+		printf("temp = %d\n", temp);
+		temp++; //마찬가지
+		i++;
+	}
+
+
+	//범위 - 전역 변수
+
+
+	//생존 시간 - auto
+
+
+	//생존 시간 - static
 	int i;
 
-	srand((unsigned)time(NULL));
+	for (i = 0; i < 3; i++) {
+		sub();
+	}
 
-	for (i = 0; i < 6; i++)
-		printf("%d ", 1 + rand() % 45);
 
+	//생존 시간 - register
+	register int i;
+	register int sum = 0;
+
+	for (i = 0; i < 100; i++) {
+		sum += i;
+		printf("%d\n", sum);
+	}
+
+
+	//생존 시간 - extern
+
+
+	//로그인 횟수 제한하기
+	//first try
+	int count = 0;
+
+	while (count < 3) {
+		static int id, pw;
+		printf("id: ");
+		scanf_s("%d", &id);
+		printf("pass: ");
+		scanf_s("%d", &pw);
+
+		if ((id == MY_ID) && (pw == MY_PW)) {
+			printf("로그인 성공\n");
+			break;
+		}
+
+		count++;
+	}
+	
+	if (count == 3)
+		printf("횟수 초과\n");
+
+
+	//로그인 횟수 제한하기
+	//second try
+	int id, password, result;
+
+	while (1) {
+		printf("id: ____\b\b\b\b");
+		scanf_s("%d", &id);
+		printf("pw: ____\b\b\b\b");
+		scanf_s("%d", &password);
+
+		result = check(id, password);
+
+		if (result == SUCCESS)
+			break;
+		else
+			printf("다시 시도해주세요.\n\n");
+	}
+
+	printf("로그인 성공\n");
 }
 
-void draw_star(int N) {
+void sub() {
+	int auto_count = 0;
+	static int static_count = 0;
 
-	int x, y;
+	auto_count++;
+	static_count++;
 
-	//1~N
-	for (y = 1; y <= N; y++) {
-		for (x = 1; x <= N; x++)
-			if (x <= y)
-				printf("*");
-		printf("\n");
-	}
-
-	//N~1
-	for (y = 1; y <= N; y++) {
-		for (x = N; x > 0; x--)
-			if (x >= y)
-				printf("*");
-		printf("\n");
-	}
+	printf("auto_count=%d\n", auto_count);
+	printf("static_count=%d\n\n", static_count);
 }
 
-void draw_star_ri(int N) {
-	int x, y;
+int check(int id, int password) {
+	static int super_id = 1234;
+	static int super_password = 5678;
+	static int try_count = 0;
 
-	//1~N
-	for (y = 1; y <= N; y++) {
-		for (x = N; x > 0; x--)
-			if (x >= y)
-				printf("*");
-			else
-				printf(" ");
-		printf("\n");
+	try_count++;
+
+	if (try_count >= LIMIT) {
+		printf("횟수 초과\n");
+		exit(1);
 	}
-
-	//N~1;
-	for (y = 1; y <= N; y++) {
-		for (x = 1; x <= N; x++)
-			if (x >= y)
-				printf("*");
-			else
-				printf(" ");
-		printf("\n");
-	}
-
+	
+	if ((id == super_id) && (password == super_password))
+		return SUCCESS;
+	else
+		return FAIL;
 }
