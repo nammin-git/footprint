@@ -16,7 +16,7 @@ void main(void)
 	printf("정수를 입력하시오: ");
 	scanf_s("%d", &N);
 
-	printf("%d", factorial(N));
+	printf("N! = %d", factorial(N));
 
 
 }
@@ -25,5 +25,5 @@ long factorial(int N) {
 	if (N == 1)
 		return 1;
 	else
-		return fatorial(N - 1);
+		return factorial(N - 1);
 }
