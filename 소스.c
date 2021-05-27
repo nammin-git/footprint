@@ -1,238 +1,148 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-void f1();
-void f2();
-void f3();
-void f4();
-int sum(int n);
-int recursive(int n);
-int r(int n);
+void plus(int num1, int num2);
+void minus(int num1, int num2);
+void multiply(int num1, int num2);
+void divide(int num1, int num2);
 
-int i;
-int n = 20;
+void add(int num1, int num2);
+void sub(int num1, int num2);
+void mul(int num1, int num2);
+void div(int num1, int num2);
 
-void main(void)
-{
-	//프로그램의 출력을 쓰시오
-	//###############
-	for (i = 0; i < 3; i++)
-		f1();
-	//실제 출력은 #####
-	//?????
-	
+int count_global;
 
-	//프로그램의 출력을 쓰시오
-	//n=10
-	f2(n);
-	printf("\n\nn=%d\n", n);
-	//실제 출력은 20
-	//?????
-
-
-	//프로그램의 출력을 쓰시오
-	//x = 3; x = 2;
-	int x = 2;
-	{
-		int x = 3;
-		printf("\n\n%d\n", x);
-	}
-	printf("%d\n", x);
-
-
-	//프로그램의 출력을 쓰시오
-	//0; 1;
-	f3();
-	f3();
-	//static int라서 변수 저장됨
-
-	f4();
-	f4();
-	//0; 0;
-
-
-	//sum(5)
-	printf("%d\n", sum(5));
-
-
-	//recursive(5)
-	printf("%d\n", recursive(5));
-
-
-	//반복구조를 비순환적 프로그램으로 바꾸기
-	int i, n, result = 1;
-
-	n = 5;
-
-	for (i = 1; i <= n; i++)
-		result += i;
-
-	printf("result=%d\n", result);
-
-	printf("==========\n");
-
-	printf("r(%d)=%d\n", n, r(n));
-}
-
-//##### 함수
-void f1() {
-	for (i = 0; i < 5; i++)
-		printf("#");
-
-}
-
-void f2() {
-	n = 20;
-}
-
-void f3() {
-	static int count = 0;
-	printf("%d\n", count++);
-}
-
-void f4() {
-	int count = 0;
-	printf("%d\n", count++);
-}
-
-int sum(int n) {
-	printf("%d\n", n);
-	if (n < 1)
-		return 1;
-	else
-		return n + sum(n - 1);
-
-}
-
-int recursive(int n) {
-	printf("%d\n", n);
-	if (n < 1)
-		return 2;
-	else
-		return 2 * recursive(n - 1) + 1;
-}
-
-int r(int n) {
-	if (n == 0)
-		return 1;
-	else
-		return n + r(n - 1);
-}
-#include <stdio.h>
-
-void f1();
-void f2();
-void f3();
-void f4();
-int sum(int n);
-int recursive(int n);
-int r(int n);
-
-int i;
-int n = 20;
+void get_dice_face();
 
 void main(void)
 {
-	//프로그램의 출력을 쓰시오
-	//###############
-	for (i = 0; i < 3; i++)
-		f1();
-	//실제 출력은 #####
-	//?????
-	
+	//연산 횟수를 기억하는 계산기
+	//정적 지역 변수 사용
+	int num1, num2;
+	char op;
 
-	//프로그램의 출력을 쓰시오
-	//n=10
-	f2(n);
-	printf("\n\nn=%d\n", n);
-	//실제 출력은 20
-	//?????
+	while (1) {
+		printf("연산을 입력하시오: ");
+		scanf_s("%d", &num1);
+		scanf_s("%c", &op, 1);
+		scanf_s("%d", &num2);
 
-
-	//프로그램의 출력을 쓰시오
-	//x = 3; x = 2;
-	int x = 2;
-	{
-		int x = 3;
-		printf("\n\n%d\n", x);
+		switch (op) {
+		case '+':
+			plus(num1, num2);
+			break;
+		case '-':
+			minus(num1, num2);
+			break;
+		case '*':
+			multiply(num1, num2);
+			break;
+		case '/':
+			divide(num1, num2);
+			break;
+		}
 	}
-	printf("%d\n", x);
+	//종료를 시킬 수가 없어서 당황스러움;
 
 
-	//프로그램의 출력을 쓰시오
-	//0; 1;
-	f3();
-	f3();
-	//static int라서 변수 저장됨
+	//연산 횟수를 기억하는 계산기
+	//전역 변수 사용
+	int num1, num2;
+	char op;
 
-	f4();
-	f4();
-	//0; 0;
+	while (1) {
+		printf("연산을 입력하시오: ");
+		scanf_s("%d", &num1);
+		scanf_s("%c", &op, 1);
+		scanf_s("%d", &num2);
+
+		switch (op) {
+		case '+':
+			add(num1, num2);
+			break;
+		case '-':
+			sub(num1, num2);
+			break;
+		case '*':
+			mul(num1, num2);
+			break;
+		case '/':
+			div(num1, num2);
+			break;
+		}
+	}
 
 
-	//sum(5)
-	printf("%d\n", sum(5));
-
-
-	//recursive(5)
-	printf("%d\n", recursive(5));
-
-
-	//반복구조를 비순환적 프로그램으로 바꾸기
-	int i, n, result = 1;
-
-	n = 5;
-
-	for (i = 1; i <= n; i++)
-		result += i;
-
-	printf("result=%d\n", result);
-
-	printf("==========\n");
-
-	printf("r(%d)=%d\n", n, r(n));
-}
-
-//##### 함수
-void f1() {
-	for (i = 0; i < 5; i++)
-		printf("#");
+	//주사위 면이 몇 번 나왔는지 출력하는 프로그램
+	get_dice_face();
 
 }
 
-void f2() {
-	n = 20;
-}
-
-void f3() {
+void plus(int num1, int num2) {
 	static int count = 0;
-	printf("%d\n", count++);
+	count++;
+	printf("덧셈은 총 %d번 실행되었습니다.\n", count);
+	printf("연산 결과: %d\n\n", num1 + num2);
 }
 
-void f4() {
-	int count = 0;
-	printf("%d\n", count++);
+void minus(int num1, int num2) {
+	static int count = 0;
+	count++;
+	printf("뺄셈은 총 %d번 실행되었습니다.\n", count);
+	printf("연산 결과: %d\n\n", num1 - num2);
 }
 
-int sum(int n) {
-	printf("%d\n", n);
-	if (n < 1)
-		return 1;
-	else
-		return n + sum(n - 1);
+void multiply(int num1, int num2) {
+	static int count = 0;
+	count++;
+	printf("곱셈은 총 %d번 실행되었습니다.\n", count);
+	printf("연산 결과: %d\n\n", num1 * num2);
+}
+
+void divide(int num1, int num2) {
+	static int count = 0;
+	count++;
+	printf("나눗셈은 총 %d번 실행되었습니다.\n", count);
+	printf("연산 결과: %d\n\n", num1 / num2);
+}
+
+
+void add(int num1, int num2) {
+	count_global++;//공유하면 안 되고 따로 써야겠는걸
+	printf("덧셈은 총 %d번 실행되었습니다.\n", count_global);
+	printf("연산 결과: %d\n\n", num1 + num2);
+}
+
+void sub(int num1, int num2) {
+	count_global++;
+	printf("뺼셈은 총 %d번 실행되었습니다.\n", count_global);
+	printf("연산 결과: %d\n\n", num1 - num2);
+}
+
+void mul(int num1, int num2) {
+	count_global++;
+	printf("곱셈은 총 %d번 실행되었습니다.\n", count_global);
+	printf("연산 결과: %d\n\n", num1 * num2);
+}
+
+void div(int num1, int num2) {
+	count_global++;
+	printf("나눗셈은 총 %d번 실행되었습니다.\n", count_global);
+	printf("연산 결과: %d\n\n", num1 / num2);
+}
+
+
+void get_dice_face() {
+	int i;
+
+	srand((unsigned)time(NULL));
+
+	while (1) {
+		printf("%d ", 1 + rand() % 6);
+
+	}
 
 }
 
-int recursive(int n) {
-	printf("%d\n", n);
-	if (n < 1)
-		return 2;
-	else
-		return 2 * recursive(n - 1) + 1;
-}
-
-int r(int n) {
-	if (n == 0)
-		return 1;
-	else
-		return n + r(n - 1);
-}
