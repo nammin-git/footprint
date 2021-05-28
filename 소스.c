@@ -2,147 +2,121 @@
 #include <stdlib.h>
 #include <time.h>
 
-void plus(int num1, int num2);
-void minus(int num1, int num2);
-void multiply(int num1, int num2);
-void divide(int num1, int num2);
-
-void add(int num1, int num2);
-void sub(int num1, int num2);
-void mul(int num1, int num2);
-void div(int num1, int num2);
-
-int count_global;
-
+//주사위를 던져서 각각의 면이 나옷 횟수를 출력하는 프로그램
 void get_dice_face();
+
+//맨 처음 호출되는 경우에만 초기화를 수행하는 난수 함수 작성하기
+int get_random();
+
+//무한수열을 계산하는 순환함수
+double infinite_sequence(int n);
+
 
 void main(void)
 {
-	//연산 횟수를 기억하는 계산기
-	//정적 지역 변수 사용
-	int num1, num2;
-	char op;
-
-	while (1) {
-		printf("연산을 입력하시오: ");
-		scanf_s("%d", &num1);
-		scanf_s("%c", &op, 1);
-		scanf_s("%d", &num2);
-
-		switch (op) {
-		case '+':
-			plus(num1, num2);
-			break;
-		case '-':
-			minus(num1, num2);
-			break;
-		case '*':
-			multiply(num1, num2);
-			break;
-		case '/':
-			divide(num1, num2);
-			break;
-		}
-	}
-	//종료를 시킬 수가 없어서 당황스러움;
+	//주사위 던지기
+	//함수 호출
+	printf("주사위 던지기를 시작합니다.\n");
+	printf("1면\t2면\t3면\t4면\t5면\t6면\n");
 
 
-	//연산 횟수를 기억하는 계산기
-	//전역 변수 사용
-	int num1, num2;
-	char op;
+	//주사위 던지기를 반복
+	int i = 0;
 
-	while (1) {
-		printf("연산을 입력하시오: ");
-		scanf_s("%d", &num1);
-		scanf_s("%c", &op, 1);
-		scanf_s("%d", &num2);
-
-		switch (op) {
-		case '+':
-			add(num1, num2);
-			break;
-		case '-':
-			sub(num1, num2);
-			break;
-		case '*':
-			mul(num1, num2);
-			break;
-		case '/':
-			div(num1, num2);
-			break;
-		}
+	while (i<2000) {
+		get_dice_face();
+		i++;
 	}
 
 
-	//주사위 면이 몇 번 나왔는지 출력하는 프로그램
-	get_dice_face();
+	//무한 수열
+	int n;
+	
+	printf("무한 수열을 계산해드립니다.\n정수를 입력하시오: ");
+	scanf_s("%d", &n);
 
-}
-
-void plus(int num1, int num2) {
-	static int count = 0;
-	count++;
-	printf("덧셈은 총 %d번 실행되었습니다.\n", count);
-	printf("연산 결과: %d\n\n", num1 + num2);
-}
-
-void minus(int num1, int num2) {
-	static int count = 0;
-	count++;
-	printf("뺄셈은 총 %d번 실행되었습니다.\n", count);
-	printf("연산 결과: %d\n\n", num1 - num2);
-}
-
-void multiply(int num1, int num2) {
-	static int count = 0;
-	count++;
-	printf("곱셈은 총 %d번 실행되었습니다.\n", count);
-	printf("연산 결과: %d\n\n", num1 * num2);
-}
-
-void divide(int num1, int num2) {
-	static int count = 0;
-	count++;
-	printf("나눗셈은 총 %d번 실행되었습니다.\n", count);
-	printf("연산 결과: %d\n\n", num1 / num2);
-}
-
-
-void add(int num1, int num2) {
-	count_global++;//공유하면 안 되고 따로 써야겠는걸
-	printf("덧셈은 총 %d번 실행되었습니다.\n", count_global);
-	printf("연산 결과: %d\n\n", num1 + num2);
-}
-
-void sub(int num1, int num2) {
-	count_global++;
-	printf("뺼셈은 총 %d번 실행되었습니다.\n", count_global);
-	printf("연산 결과: %d\n\n", num1 - num2);
-}
-
-void mul(int num1, int num2) {
-	count_global++;
-	printf("곱셈은 총 %d번 실행되었습니다.\n", count_global);
-	printf("연산 결과: %d\n\n", num1 * num2);
-}
-
-void div(int num1, int num2) {
-	count_global++;
-	printf("나눗셈은 총 %d번 실행되었습니다.\n", count_global);
-	printf("연산 결과: %d\n\n", num1 / num2);
+	printf("%lf", infinite_sequence(n));
 }
 
 
 void get_dice_face() {
-	int i;
+	//주사위 던진 횟수를 저장할 정적 지역 변수
+	static int count;
+	count++;
 
-	srand((unsigned)time(NULL));
+	//각 면에 정적 지역 변수 할당
+	static int one = 0;
+	static int two = 0;
+	static int three = 0;
+	static int four = 0;
+	static int five = 0;
+	static int six = 0;
 
-	while (1) {
-		printf("%d ", 1 + rand() % 6);
 
+	//난수 발생
+	int dice;
+
+	get_random();
+
+	dice = 1 + rand() % 6;
+
+	//면이 나온 횟수 저장
+	switch (dice) {
+	case 1:
+		one++;
+		break;
+	case 2:
+		two++;
+		break;
+	case 3:
+		three++;
+		break;
+	case 4:
+		four++;
+		break;
+	case 5:
+		five++;
+		break;
+	case 6:
+		six++;
+		break;
 	}
-
+	//100회 마다 면이 나온 횟수 출력
+	if ((count % 100) == 0) {
+		if (one < 10)
+			printf(" %d %7d %7d %7d %7d %7d\n", one, two, three, four, five, six);
+		else
+			printf("%d %7d %7d %7d %7d %7d\n", one, two, three, four, five, six);
+		//횟수를 초기화하고 싶지 않다면 주석 처리하면 됨
+		one = 0;
+		two = 0;
+		three = 0;
+		four = 0;
+		five = 0;
+		six = 0;
+	}
 }
 
+
+int get_random() {
+	//호출 횟수를 저장하는 정적 지역 변수
+	static int inited = 0;
+
+	if (inited == 0) {
+		srand((unsigned)time(NULL));
+		inited = 1;
+	}
+}
+
+
+//무한수열
+double infinite_sequence(int n) {
+	if (n <= 1) {
+		printf(" %lf\n= ", (float)n);
+		return 1.0;
+	}
+	else {
+		printf(" %lf +", 1.0/n);
+		return 1.0 / n + infinite_sequence(n - 1);
+	}
+}
