@@ -1,122 +1,69 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 
-//주사위를 던져서 각각의 면이 나옷 횟수를 출력하는 프로그램
-void get_dice_face();
+//재귀적인 패턴으로 별 찍기
+int draw_star(int N);
 
-//맨 처음 호출되는 경우에만 초기화를 수행하는 난수 함수 작성하기
-int get_random();
-
-//무한수열을 계산하는 순환함수
-double infinite_sequence(int n);
-
+//하노이 탑 이동 순서
+int recursive(int N);
 
 void main(void)
 {
-	//주사위 던지기
-	//함수 호출
-	printf("주사위 던지기를 시작합니다.\n");
-	printf("1면\t2면\t3면\t4면\t5면\t6면\n");
+	//변수 선언 및 변수 입력 받기
+	int N;
+
+	printf("패턴을 만들어드립니다.\n3의 거듭제곱수를 입력하시오: ");
+	scanf_s("%d", &N);
+
+	//함수 실행
+	draw_star(N);
 
 
-	//주사위 던지기를 반복
-	int i = 0;
+	//하노이 탑 이동 순서
+	int N;
 
-	while (i<2000) {
-		get_dice_face();
-		i++;
-	}
+	printf("원판의 갯수를 입력하시오: ");
+	scanf_s("%d", &N);
 
-
-	//무한 수열
-	int n;
-	
-	printf("무한 수열을 계산해드립니다.\n정수를 입력하시오: ");
-	scanf_s("%d", &n);
-
-	printf("%lf", infinite_sequence(n));
+	printf("\n\n");
+	recursive(N);
 }
 
+int draw_star(int N) {
+	//반복적인 패턴으로 별을 만드므로 반복문 사용
+	int i, j;
 
-void get_dice_face() {
-	//주사위 던진 횟수를 저장할 정적 지역 변수
-	static int count;
-	count++;
-
-	//각 면에 정적 지역 변수 할당
-	static int one = 0;
-	static int two = 0;
-	static int three = 0;
-	static int four = 0;
-	static int five = 0;
-	static int six = 0;
-
-
-	//난수 발생
-	int dice;
-
-	get_random();
-
-	dice = 1 + rand() % 6;
-
-	//면이 나온 횟수 저장
-	switch (dice) {
-	case 1:
-		one++;
-		break;
-	case 2:
-		two++;
-		break;
-	case 3:
-		three++;
-		break;
-	case 4:
-		four++;
-		break;
-	case 5:
-		five++;
-		break;
-	case 6:
-		six++;
-		break;
+	//N이 3보다 작아지면 종료
+	if (N < 3)
+		return 0;
+	//N이 3일 때 기본 패턴 출력
+	else if (N == 3) {
+		for (i = 0; i < N; i++) {
+			for (j = 0; j < N; j++) {
+				if ((i == N / 3) && (j == N / 3))
+					printf(" ");
+				else
+					printf("*");
+			}
+			printf("\n");
+		}
+		return draw_star(N/3);
 	}
-	//100회 마다 면이 나온 횟수 출력
-	if ((count % 100) == 0) {
-		if (one < 10)
-			printf(" %d %7d %7d %7d %7d %7d\n", one, two, three, four, five, six);
-		else
-			printf("%d %7d %7d %7d %7d %7d\n", one, two, three, four, five, six);
-		//횟수를 초기화하고 싶지 않다면 주석 처리하면 됨
-		one = 0;
-		two = 0;
-		three = 0;
-		four = 0;
-		five = 0;
-		six = 0;
+	//N이 3이 아닌 제곱수일 때
+	//?????
+	else if ((N / 3) % 3 == 0) {
+		return draw_star(N/3);
 	}
 }
 
 
-int get_random() {
-	//호출 횟수를 저장하는 정적 지역 변수
-	static int inited = 0;
+int recursive(int N) {
+	//옮긴 횟수를 저장할 정적 지역 변수
+	static int K;
 
-	if (inited == 0) {
-		srand((unsigned)time(NULL));
-		inited = 1;
-	}
-}
+	//장대 만들기
+	int stick = 1;
 
+	//
 
-//무한수열
-double infinite_sequence(int n) {
-	if (n <= 1) {
-		printf(" %lf\n= ", (float)n);
-		return 1.0;
-	}
-	else {
-		printf(" %lf +", 1.0/n);
-		return 1.0 / n + infinite_sequence(n - 1);
-	}
+	printf("")
 }
