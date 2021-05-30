@@ -1,69 +1,106 @@
 #include <stdio.h>
+#include <stdlib.h>
+#define SIZE 5
 
-//재귀적인 패턴으로 별 찍기
-int draw_star(int N);
-
-//하노이 탑 이동 순서
-int recursive(int N);
+void func();
 
 void main(void)
 {
-	//변수 선언 및 변수 입력 받기
-	int N;
-
-	printf("패턴을 만들어드립니다.\n3의 거듭제곱수를 입력하시오: ");
-	scanf_s("%d", &N);
-
-	//함수 실행
-	draw_star(N);
+	//배열에 값을 초기화하고 출력하는 프로그램
+	int arr[3] = { 1,2,3 };
+	for (int i = 0; i < 3; i++)
+		printf("%d\n", arr[i]);
 
 
-	//하노이 탑 이동 순서
-	int N;
+	//배열에 값을 대입하고 출력하는 프로그램
+	int arr[3];
+	arr[0] = 1;
+	arr[1] = 2;
+	arr[2] = 3;
+	for (int i = 0; i < 3; i++)
+		printf("%d\n", arr[i]);
 
-	printf("원판의 갯수를 입력하시오: ");
-	scanf_s("%d", &N);
 
-	printf("\n\n");
-	recursive(N);
-}
+	//배열에 난수를 포함시키는 프로그램
+	int i;
+	int grade[SIZE];
 
-int draw_star(int N) {
-	//반복적인 패턴으로 별을 만드므로 반복문 사용
-	int i, j;
+	for (i = 0; i < SIZE; i++)
+		grade[i] = rand() % 100;
 
-	//N이 3보다 작아지면 종료
-	if (N < 3)
-		return 0;
-	//N이 3일 때 기본 패턴 출력
-	else if (N == 3) {
-		for (i = 0; i < N; i++) {
-			for (j = 0; j < N; j++) {
-				if ((i == N / 3) && (j == N / 3))
-					printf(" ");
-				else
-					printf("*");
-			}
+	for (i = 0; i < SIZE; i++)
+		printf("grade[%d]=%d\n", i, grade[i]);
+
+
+	//a[6]의 원소 초기화
+	int a[] = { 1,2,3,4,5,6 };
+
+
+	//구구단 출력하기
+	int table;
+
+	printf("출력할 단을 입력해주세요: ");
+	scanf_s("%d", &table);
+
+	func(table);
+
+
+	//영화관 좌석 예약 시스템
+	char yes_no;
+
+	//배열을 만듦
+	int seat[10] = { 0 };
+
+
+	//반복 시작
+	while (1) {
+	printf("좌석을 예약하시겠습니까?(y 또는 n): ");
+	scanf_s(" %c", &yes_no, 1);
+
+	//예매 안 할 때
+	if (yes_no == 'n')
+		break;
+	//예매할 때
+	else if (yes_no == 'y') {
+		printf("1 2 3 4 5 6 7 8 9\n");
+		printf("-----------------------\n");
+
+		//남은 좌석 보기
+		for (int i = 0; i < 10; i++)
+			printf(" %d", seat[i]);
+		printf("\n");
+
+		//좌석 예약하기
+		int seat_number;
+		printf("몇 번째 좌석을 예약하시겠습니까? ");
+		scanf_s("%d", &seat_number);
+
+		//예약 안 된 좌석일 때만 예약할 수 있도록
+		if (seat[seat_number - 1] != 0) {
+			seat[seat_number - 1] = 1;
+			printf("예약되었습니다.\n");
+			printf("======================\n");
 			printf("\n");
 		}
-		return draw_star(N/3);
+		else {
+			printf("이미 예약된 좌석입니다.\n");
+			printf("======================\n");
+			printf("\n");
+		}
 	}
-	//N이 3이 아닌 제곱수일 때
-	//?????
-	else if ((N / 3) % 3 == 0) {
-		return draw_star(N/3);
 	}
 }
 
+void func(int table) {
+	int arr[9];
 
-int recursive(int N) {
-	//옮긴 횟수를 저장할 정적 지역 변수
-	static int K;
+	int i;
+	for (i = 0; i < 9; i++)
+		arr[i] = (i + 1) * table;
 
-	//장대 만들기
-	int stick = 1;
+	for (i = 0; i < 9; i++)
+		printf("arr[%d] = %d\n", i, arr[i]);
 
-	//
 
-	printf("")
 }
+
