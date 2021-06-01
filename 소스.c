@@ -1,64 +1,63 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <Windows.h>
+#define CURRENT_BALANCE 10000;
 
-//정수 n개의 합을 구하는 함수
-long long sum(int* a, int n) {
+//은행 계좌에서 저축하고 인출하는 프로그램
 
-}
+void save(int amount);
+void draw();
 
-void main(void)
+int amount;
+int current_balance = CURRENT_BALANCE;
+
+void main()
 {
-	/*
-	//영화관 좌석 예약 시스템
-	char yes_no;
+	int menu;
+	
+	while(1){
+		printf("메뉴를 선택하세요. 저축(1), 인출(2) 종료(3): ");
+		scanf_s("%d", &menu);
 
-	//배열을 만듦
-	int seat[10] = { 0 };
-
-
-	//반복 시작
-	while (1) {
-		printf("좌석을 예약하시겠습니까?(y 또는 n): ");
-		scanf_s(" %c", &yes_no, 1);
-
-		//예매 안 할 때
-		if (yes_no == 'n')
+		if (menu == 1) {
+			printf("저축할 금액: ");
+			scanf_s("%d", &amount);
+			save(amount);
+		}
+		else if (menu == 2) {
+			draw();
+		}
+		else if (menu == 3) {
+			printf("프로그램을 종료합니다.");
 			break;
-		//예매할 때
-		else if (yes_no == 'y') {
-			printf("1 2 3 4 5 6 7 8 9 10\n");
-			printf("-----------------------\n");
-
-			//남은 좌석 보기
-			for (int i = 0; i < 10; i++)
-				printf(" %d", seat[i]);
-			printf("\n");
-
-			//좌석 예약하기
-			int seat_number;
-			printf("몇 번째 좌석을 예약하시겠습니까? ");
-			scanf_s("%d", &seat_number);
-
-			//예약 안 된 좌석일 때만 예약할 수 있도록
-			if (seat[seat_number - 1] != 0) {
-				printf("이미 예약된 좌석입니다.\n");
-				printf("======================\n");
-				printf("\n");
-			}
-			else {
-				seat[seat_number - 1] = 1;
-				printf("예약되었습니다.\n");
-				printf("======================\n");
-				printf("\n");
-			}
+		}
+		else {
+			printf("\n다시 선택해주세요.\n\n\n");
+			continue;
 		}
 	}
-	*/
-
-	//정수 n개의 합을 구하는 함수
-	int a[n];
-
-	for(int i=0; i<n;i++)
-
 }
+
+void save(int amount) {
+	Sleep(500);
+	printf("\n현재 잔액은 %d입니다.\n", current_balance);
+
+	Sleep(500);
+	printf("\n%d원을 저축합니다.\n저축 후 잔고는 %d원입니다.\n\n\n", amount, amount + current_balance);
+
+	current_balance += amount;
+}
+
+
+void draw() {
+	int withdrawal;
+
+	Sleep(500);
+	printf("\n현재 잔액은 %d입니다.\n", current_balance);
+	printf("얼마를 인출하시겠습니까? ");
+	scanf_s("%d", &withdrawal);
+
+	Sleep(500);
+	printf("\n%d원을 인출합니다.\n인출 후 잔고는 %d원입니다.\n\n\n", withdrawal, current_balance - withdrawal);
+}
+
