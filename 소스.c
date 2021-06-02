@@ -1,63 +1,99 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <Windows.h>
-#define CURRENT_BALANCE 10000;
+#define SIZE 16
 
-//은행 계좌에서 저축하고 인출하는 프로그램
+//2차원 배열
+int main()
+{
+	int s[3][5];
+	int i, j;
+	int value = 0;
 
-void save(int amount);
-void draw();
+	for (i = 0; i < 3; i++) {
+		for (j = 0; j < 5; j++)
+			s[i][j] = value++;
+	}
 
-int amount;
-int current_balance = CURRENT_BALANCE;
+	for (i = 0; i < 3; i++) {
+		for (j = 0; j < 5; j++)
+			printf("%d\n", s[i][j]);
+	}
+
+	return 0;
+}
+
+
+/*
+//이진 탐색
+int binary_search(int list[], int n, int key);
 
 void main()
 {
-	int menu;
-	
-	while(1){
-		printf("메뉴를 선택하세요. 저축(1), 인출(2) 종료(3): ");
-		scanf_s("%d", &menu);
+	int key;
+	int grade[SIZE] = { 2,6,11,13,18,20,22,27,29,30,34,38,41,42,45,47 };
 
-		if (menu == 1) {
-			printf("저축할 금액: ");
-			scanf_s("%d", &amount);
-			save(amount);
-		}
-		else if (menu == 2) {
-			draw();
-		}
-		else if (menu == 3) {
-			printf("프로그램을 종료합니다.");
-			break;
-		}
-		else {
-			printf("\n다시 선택해주세요.\n\n\n");
-			continue;
-		}
+	printf("탐색할 값을 입력하시오: ");
+	scanf_s("%d", key);
+	printf("탐색 결과= %d\n", binary_search(grade, SIZE, key));
+}
+
+int binary_search(int list[], int n, int key) {
+	int low, high, middle;
+
+	low = 0;
+	high = n - 1;
+
+	while (low <= high) {
+		printf("[%d %d]\n", low, high);
+		middle = (low + high) / 2;
+		if (key == list[middle])
+			return middle;
+		else if (key > list[middle])
+			low = middle + 1;
+		else
+			high = middle - 1;
 	}
 }
+*/
 
-void save(int amount) {
-	Sleep(500);
-	printf("\n현재 잔액은 %d입니다.\n", current_balance);
 
-	Sleep(500);
-	printf("\n%d원을 저축합니다.\n저축 후 잔고는 %d원입니다.\n\n\n", amount, amount + current_balance);
+/*
+void main()
+{
+	//선택 정렬
+	int list[SIZE] = { 3,2,9,7,1,4,8,0,6,5 };
 
-	current_balance += amount;
+	int i, j, temp, least;
+
+	for (i = 0; i < SIZE - 1; i++) {
+		least = i;
+
+		for (j = i + 1; j < SIZE; j++) {
+			if (list[j] < list[least])
+				least = j;
+		}
+
+		temp = list[i];
+		list[i] = list[least];
+		list[least] = temp;
+	}
+	for (i = 0; i < SIZE; i++)
+		printf("%d ", list[i]);
+	printf("\n");
+
+
+	//순차 탐색
+	int key, i;
+	int list[SIZE] = { 1,2,3,4,5,6,7,8,9 };
+
+	printf("탐색할 값을 입력하시오: ");
+	scanf_s("%d", &key);
+
+	for (i = 0; i < SIZE; i++) {
+		if (list[i] == key)
+			printf("탐색 성공 인덱스= %d\n", i);
+	}
+
+	printf("탐색 종료\n");
+
 }
-
-
-void draw() {
-	int withdrawal;
-
-	Sleep(500);
-	printf("\n현재 잔액은 %d입니다.\n", current_balance);
-	printf("얼마를 인출하시겠습니까? ");
-	scanf_s("%d", &withdrawal);
-
-	Sleep(500);
-	printf("\n%d원을 인출합니다.\n인출 후 잔고는 %d원입니다.\n\n\n", withdrawal, current_balance - withdrawal);
-}
-
+*/
