@@ -1,38 +1,66 @@
-//반복문 문제
+//배열 문제
 #include <stdio.h>
 
-//9번 문제
-//계약직 직원의 급여를 계산하는 프로그램
-#define HOUR_SALARY 5500
-#define OVERTIME 140
-
+//문제 5. 시험 점수를 표로 출력하기
 void main()
 {
-	int work_time;
-	int salary = 0;
+	int score[5][5] = { 0 };
 
-	printf("근무 시간을 입력해주세요: ");
-	scanf_s("%d", &work_time);
-
-	for (int i = 0; i < work_time; i++) {
-		if (i < OVERTIME)
-			salary += HOUR_SALARY;
-		else
-			salary += HOUR_SALARY * 1.5;
+	//철수의 점수 입력받기
+	printf("철수의 점수 입력\n");
+	for (int i = 0; i < 4; i++) {
+		scanf_s("%d", &score[0][i]);
 	}
 
-	printf("세전 급여는 %d원 입니다.\n", salary);
+	//철희의 점수 입력받기
+	printf("철희의 점수 입력\n");
+	for (int i = 0; i < 4; i++) {
+		scanf_s("%d", &score[1][i]);
+	}
 
-	float tax_percent;
+	//영수의 점수 입력받기
+	printf("영수의 점수 입력\n");
+	for (int i = 0; i < 4; i++) {
+		scanf_s("%d", &score[2][i]);
+	}
 
-	if (salary < 800000)
-		tax_percent = 0.07;
-	else
-		tax_percent = 0.1;
+	//철희의 점수 입력받기
+	printf("철희의 점수 입력\n");
+	for (int i = 0; i < 4; i++) {
+		scanf_s("%d", &score[3][i]);
+	}
 
-	float take_home = 0;
-	take_home = salary * (1 - tax_percent);
 
-	printf("세후 급여는 %.0f원 입니다.\n", take_home);
+	//과목별 총점 계산하기
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			score[4][i] += score[j][i];
+		}
+	}
+
+	//개인 총점 계산하기
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 4; j++) {
+			score[i][4] += score[i][j];
+		}
+	}
+
+
+	//점수 출력하기
+	printf("철수 : %d, %d, %d, %d 개인 총점 : %d\n", score[0][0], score[0][1], score[0][2], score[0][3], score[0][4]);
+	printf("---------------------------------------\n");
+	printf("철희 : %d, %d, %d, %d 개인 총점 : %d\n", score[1][0], score[1][1], score[1][2], score[1][3], score[1][4]);
+	printf("---------------------------------------\n");
+	printf("영수 : %d, %d, %d, %d 개인 총점 : %d\n", score[2][0], score[2][1], score[2][2], score[2][3], score[2][4]);
+	printf("---------------------------------------\n");
+	printf("영희 : %d, %d, %d, %d 개인 총점 : %d\n", score[3][0], score[3][1], score[3][2], score[3][3], score[3][4]);
+	printf("---------------------------------------\n");
+	printf("과목 : %d, %d, %d, %d 총 합 : %d\n", score[4][0], score[4][1], score[4][2], score[4][3], score[4][4]);
+	printf("---------------------------------------\n");
 
 }
+
+
+
+
+
