@@ -1,89 +1,74 @@
-//반복문 문제
+//책
+//10장 배열
 #include <stdio.h>
 
-//8번 문제
-//정수를 합산하는 프로그램
-/*for문 사용
+//입력받은 정수를 역순으로 출력하기
+
 void main()
 {
-	int n, sum = 0;
-
-	printf("정수를 입력하시오: ");
-	scanf_s("%d", &n);
-
-	if (n == 0)
-		printf("0\n");
-	else if (n < 0) {
-		for (int i = 2 * n; i <= n; i++) {
-			if (i == 2 * n) {
-				sum += i;
-				printf("(%d)", i);
-			}
-			else {
-				sum += i;
-				printf(" + (%d)", i);
-			}
-		}
-		printf(" = %d", sum);
+	//입력받아서 배열에 저장
+	int arr[5] = { 0 };
+	
+	for (int i = 0; i < 5; i++) {
+		printf("정수를 입력하시오: ");
+		scanf_s("%d", &arr[i]);
 	}
-	else {
-		for (int i = n; i <= 2 * n; i++) {
-			if (i == n) {
-				sum += i;
-				printf("%d", i);
-			}
-			else {
-				sum += i;
-				printf(" + %d", i);
-			}
-		}
-		printf(" = %d", sum);
-	}
-}
-*/
 
-/*while문 사용*/
-void main()
-{
-	int n, sum = 0;
-
-	printf("정수를 입력하시오: ");
-	scanf_s("%d", &n);
-
-	if (n == 0)
-		printf("0\n");
-	else if (n < 0) {
-		int i = 2 * n;
-		while (i <= n) {
-			if (i == 2 * n) {
-				sum += i;
-				printf("(%d)", i);
-			}
-			else {
-				sum += i;
-				printf(" + (%d)", i);
-			}
-			i++;
-		}
-		printf(" = %d", sum);
-	}
-	else {
-		int i = n;
-		while (i <= 2*n) {
-			if (i == n) {
-				sum += i;
-				printf("%d", i);
-			}
-			else {
-				sum += i;
-				printf(" + %d", i);
-			}
-		i++;
-		}
-		printf(" = %d", sum);
+	//역순으로 출력
+	for (int i = 5; i > 0; i--) {
+		printf("%d\n", arr[i - 1]);
 	}
 }
 
 
+//막대그래프로 값 나타내기
+#define STUDENTS 5
+
+void main(void)
+{
+	int grade[STUDENTS] = { 30,20,10,40,50 };
+
+	for (int i = 0; i < STUDENTS; i++) {
+		printf("번호 %d: ", i);
+		for (int s = 0; s < grade[i]; s++) {
+			printf("*");
+		}
+		printf("\n");
+	}
 
 
+}
+
+
+//주사위를 던져 나온 면 세기
+#include <stdlib.h>
+#include <time.h>
+#define SIZE 6
+
+void main()
+{
+	int dice[SIZE] = { 0 };
+	int d_face;
+
+	srand((unsigned)time(NULL));
+
+	for (int i = 0; i < 10000; i++) {
+		d_face = rand() % SIZE + 1;
+		dice[d_face - 1]++;
+	}
+
+	printf("====================\n");
+	printf("면		빈도\n");
+	printf("====================\n");
+	for (int i = 0; i < SIZE; i++) {
+		printf("%d		%d\n", i + 1, dice[i]);
+	}
+}
+
+
+//tic-tac-toc 게임
+
+void main()
+{
+
+}
