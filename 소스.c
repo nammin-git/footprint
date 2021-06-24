@@ -1,88 +1,94 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-//학생들의 성적을 입력받아서 평균을 구하는 프로그램
-#define STUDENTS 3
-void main(void)
+//날짜 출력하기
+#define MONTH 12
+
+void main()
 {
-	float grade[STUDENTS];
-	float average, sum = 0;
-	
-	printf("%d명의 성적을 입력하시오: ", STUDENTS);
-	for (int i = 0; i < STUDENTS; i++) {
-		scanf_s("%f", &grade[i]);
-	}
-	
-	for (int j = 0; j < STUDENTS; j++) {
-		sum += grade[j];
-	}
+	int days[] = { 31,29,31,30,31,30,31,31,30,31,30,31 };
 
-	average = sum / STUDENTS;
-	printf("%d명의 평균 점수는 %.2f점입니다.\n", STUDENTS, average);
+	for (int i = 0; i < MONTH; i++) {
+		printf("%d월은 %d일까지 있습니다.\n", i+1, days[i]);
+	}
 }
 
 
-//성적 평균을 구하는 프로그램
-//함수 사용
-#define STUDENTS 3
+//최대값과 최소값을 출력하는 프로그램
+//배열에는 난수 발생시켜 저장
+#define SIZE 10
 
-int get_average(float a[], int n);
-void distri_chart(float a[], int n);
+int get_max(int a[], int n);
+int get_min(int a[], int n);
 
 void main(void)
 {
-	float grade[STUDENTS] = { 10.0,20.0,30.0 };
-	float average;
+	int array[SIZE];
 
-	average = get_average(grade, STUDENTS);
+	srand((unsigned)time(NULL));
 
-	printf("%d명의 평균 점수는 %.2f점입니다.\n", STUDENTS, average);
+	for (int i = 0; i < SIZE; i++) {
+		array[i] = rand() % 30000;
+		printf("%d ", array[i]);
+	}
 
-	printf("성적 분포도를 출력합니다.\n");
-	distri_chart(grade, STUDENTS);
+	printf("\n");
 
+	printf("최대값은 %d, 최소값은 %d입니다.\n", get_max(array, SIZE), get_min(array, SIZE));
 }
 
-//평균 계산 함수
-int get_average(float a[], int n) {
-	float sum = 0.0;
+int get_max(int a[], int n) {
+	int max = 0;
 
 	for (int i = 0; i < n; i++) {
-		sum += a[i];
+		if (a[max] < a[i]) {
+			max = i;
+		}
 	}
 
-	return sum / n;
+	return a[max];
 }
 
-//분포도 출력 함수
-void distri_chart(float a[], int n) {
-	int chart[10][2] = { 0 };
+int get_min(int a[], int n) {
+	int min = 0;
 
-	printf("점수대	인원수\n");
-	printf("---------------\n");
-
-	for (int i = 0; i < 10; i++) {
-		chart[i][0] = i;
+	for (int i = 0; i < n; i++) {
+		if (a[min] > a[i]) {
+			min = i;
+		}
 	}
 
-	for (int j = 0; j < 10; j++) {
-		for (int k = 0; k < n; k++) {
-			if (a[k] == (float)chart[j][1]) {
-				chart[j][1]++;
-			}
-		}
-
-	}
-
-	for (int i = 0; i < 10; i++) {
-		if (i == 0) {
-			printf("%3d-%3d	%3d", chart[i][0] * 10, chart[i][0] * 10 + 10, chart[i][1]);
-		}
-		else{
-			printf("%3d-%3d	%3d", chart[i][0] * 10 + 1, chart[i][0] * 10 + 10, chart[i][1]);
-		}
-		printf("\n");
-	}
-
-
+	return a[min];
 }
 
+
+//배열 원소가 같은지 검사하는 프로그램
+#define SIZE 10
+
+int array_equal(int a[], int b[], int size);
+
+void main()
+{
+	int a[SIZE] = { 0,1,2,3,4,5,6,7,8,9 };
+	int b[SIZE] = { 0,2,4,6,8,10,12,14,16,18 };
+
+	if(array_equal(a, b, SIZE)==1)
+		printf("두 배열의 전체 원소가 동일합니다.\n");
+	else
+		printf("서로 다른 배열입니다.\n");
+}
+
+int array_equal(int a[], int b[], int size) {
+	int tmp = 0;
+
+	for (int i = 0; i < size; i++) {
+		if (a[i] == b[i])
+			tmp++;
+		else
+			return 0;
+	}
+
+	if (tmp == size)
+		return 1;
+}
