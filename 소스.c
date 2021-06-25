@@ -1,94 +1,102 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+/*
+//배열 a를 배열 b로 복사하는 프로그램
+#define SIZE 5
 
-//날짜 출력하기
-#define MONTH 12
+void array_copy(int a[], int b[], int size);
 
 void main()
 {
-	int days[] = { 31,29,31,30,31,30,31,31,30,31,30,31 };
+	int a[SIZE] = { 5,4,3,2,1 };
+	int b[SIZE] = { 0 };
 
-	for (int i = 0; i < MONTH; i++) {
-		printf("%d월은 %d일까지 있습니다.\n", i+1, days[i]);
+	printf("배열 a의 원소\n");
+	for (int i = 0; i < SIZE; i++) {
+		printf("%d ", a[i]);
 	}
+	printf("\n-------------\n");
+
+	printf("배열 b의 원소\n");
+	for (int i = 0; i < SIZE; i++) {
+		printf("%d ", b[i]);
+	}
+	printf("\n-------------\n");
+
+	printf("배열 a의 원소를 배열 b로 복사합니다.\n");
+	array_copy(a, b, SIZE);
+
+	printf("배열 b의 원소\n");
+	for (int i = 0; i < SIZE; i++) {
+		printf("%d ", b[i]);
+	}
+	printf("\n-------------\n");
 }
 
+void array_copy(int a[], int b[], int size) {
+	for (int i = 0; i < size; i++) {
+		b[i] = a[i];
+	}
+}
+*/
+/**/
+//가장 많이 생성된 난수를 출력하는 프로그램
+#define SIZE 100
 
-//최대값과 최소값을 출력하는 프로그램
-//배열에는 난수 발생시켜 저장
-#define SIZE 10
+int print_array(int a[], int size);
+int get_max_count(int a[], int size);
 
-int get_max(int a[], int n);
-int get_min(int a[], int n);
-
-void main(void)
+void main()
 {
-	int array[SIZE];
+	int array[SIZE] = { 0 };
 
 	srand((unsigned)time(NULL));
 
 	for (int i = 0; i < SIZE; i++) {
-		array[i] = rand() % 30000;
-		printf("%d ", array[i]);
+		array[i] = rand() % 10;
 	}
 
-	printf("\n");
+	print_array(array, SIZE);
 
-	printf("최대값은 %d, 최소값은 %d입니다.\n", get_max(array, SIZE), get_min(array, SIZE));
+	printf("\n-----------------------\n");
+	
+	printf("가장 많이 나온 수는 %d입니다.\n", get_max_count(array, SIZE));
 }
 
-int get_max(int a[], int n) {
-	int max = 0;
-
-	for (int i = 0; i < n; i++) {
-		if (a[max] < a[i]) {
-			max = i;
+int print_array(int a[], int size) {
+	for (int i = 0; i < size; i++) {
+		if ((i % 10 == 0) && (i != 0)) {
+			printf("\n");
+			printf("%d  ", a[i]);
 		}
+		else
+			printf("%d  ", a[i]);
 	}
-
-	return a[max];
 }
 
-int get_min(int a[], int n) {
-	int min = 0;
-
-	for (int i = 0; i < n; i++) {
-		if (a[min] > a[i]) {
-			min = i;
-		}
-	}
-
-	return a[min];
-}
-
-
-//배열 원소가 같은지 검사하는 프로그램
-#define SIZE 10
-
-int array_equal(int a[], int b[], int size);
-
-void main()
-{
-	int a[SIZE] = { 0,1,2,3,4,5,6,7,8,9 };
-	int b[SIZE] = { 0,2,4,6,8,10,12,14,16,18 };
-
-	if(array_equal(a, b, SIZE)==1)
-		printf("두 배열의 전체 원소가 동일합니다.\n");
-	else
-		printf("서로 다른 배열입니다.\n");
-}
-
-int array_equal(int a[], int b[], int size) {
-	int tmp = 0;
+int get_max_count(int a[], int size) {
+	int count[SIZE] = { 0 };
 
 	for (int i = 0; i < size; i++) {
-		if (a[i] == b[i])
-			tmp++;
-		else
-			return 0;
+		count[a[i]]++;
 	}
 
-	if (tmp == size)
-		return 1;
+	printf("숫자   나온 횟수\n");
+	for (int j = 0; j < 10; j++) {
+		printf("%3d	%6d\n", j, count[j]);
+	}
+
+	printf("-----------------------\n");
+
+	int max_count=0;
+
+	for (int k = 0; k < 10; k++) {
+		if (count[k] > count[max_count])
+			max_count = k;
+	}
+
+	printf("가장 많이 나온 횟수는 %d회 입니다.\n", count[max_count]);
+
+	return max_count;
 }
