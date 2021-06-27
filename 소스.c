@@ -1,48 +1,44 @@
+//함수 문제 풀기
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-//2차원 표를 배열로 작성하기
-#define ROWS 3
-#define COLS 5
+//15596. 정수 N개의 합
+
+long long sum(int* a, int n);
 
 void main()
 {
-	//배열 초기화
-	int array[ROWS][COLS] = {
-		{12,56,32,16,98},
-		{99,56,34,41,3},
-		{65,3,87,78,21}
-	};
-	
-	//배열 출력
-	for (int i = 0; i < ROWS; i++) {
-		for (int j = 0; j < COLS; j++) {
-			printf("%3d ", array[i][j]);
+	//정수 입력 받기
+	int n;
+	int* a;
+	a = 0;
+
+	printf("배열 a에 저장할 원소의 갯수를 입력하시오: ");
+	scanf_s("%d", &n);
+
+	srand((unsigned)time(NULL));
+
+	for (int i = 0; i < n; i++) {
+		a[i] = rand() % 10000;
+		if ((i % 10 == 0) && i != 0) {
+			printf("%d ", a[i]);
+			printf("\n");
 		}
-		printf("\n");
+		else
+			printf("%d ", a[i]);
 	}
 
-	printf("=============\n");
-
-	//행의 합계
-	int sum = 0;
-
-	for (int i = 0; i < ROWS; i++) {
-		for (int col = 0; col < COLS; col++) {
-			sum += array[i][col];
-		}
-		printf("%d행의 합계= %d\n", i, sum);
-		sum = 0;
-	}
-
-	printf("=============\n");
-
-	//열의 합계
-	for (int j = 0; j < COLS; j++) {
-		for (int row = 0; row < ROWS; row++) {
-			sum += array[row][j];
-		}
-		printf("%d열의 합계= %d\n", j, sum);
-		sum = 0;
-	}
-
+	printf("배열 a 원소의 총 합 =  %d\n", sum(a, n));
 }
+
+long long sum(int* a, int n) {
+	int result = 0;
+	
+	for (int i = 0; i < n; i++) {
+		result += a[i];
+	}
+
+	return result;
+}
+
