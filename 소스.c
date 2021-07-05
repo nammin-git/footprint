@@ -1,19 +1,60 @@
-//상품 재고 관리 시스템
+//포인터
 #include <stdio.h>
-#define ITEMS 10
 
 void main()
 {
-	//상품 번호마다 장소를 저장
-	int a[ITEMS] = { 4,2,5,1,3,2,2,4,1,3 };
+	//주소연산자 &
+	int i = 10;
+	char c = 69;
+	double f = 12.3;
 
-	//상품 번호 입력받기
-	int target;
+	printf("i의 주소 = %u\n", &i);
+	printf("c의 주소 = %u\n", &c);
+	printf("f의 주소 = %u\n", &f);
 
-	printf("상품 번호를 입력해주세요: ");
-	scanf_s("%d", &target);
 
-	printf("상품 %d번은 %d구역에 있습니다.\n", target, a[target - 1]);
+	//어떤 자료형을 가리키는 포인터
+	char* pc;
+	float* pf;
+	double* pd;
+}
+
+int main()
+{
+	int i = 0;
+	int* p = &i;
+
+	printf("i의 주소 = %u\n", p);
+
+	return 0;
+}
+
+
+void main()
+{
+	char c = 'A';
+	float f = 36.5;
+	double d = 3.141592;
+
+	char* pc = &c;
+	float* pf = &f;
+	double* pd = % d;
+}
+
+
+//포인터를 선언하고 변수의 주소를 포인터에 대입하기
+void main()
+{
+	int i = 10;
+	double f = 12.3;
+	int* pi = NULL;		//NULL은 주소 0
+	double* pf = NULL;
+
+	pi = &i;
+	pf = &f;
+
+	printf("%u %u\n", pi, &i);
+	printf("%u %u\n", pf, &f);
 
 }
 
