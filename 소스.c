@@ -2,131 +2,139 @@
 #include <stdlib.h>
 #include <time.h>
 
-//break와 continue
+//함수
+
+int main()
+{
+	//funciton
+	//계산기
+
+	int num = 2;
+	//printf("num 은 %d 입니다.\n", num);
+	p(num);
+
+	//2 + 3 은?
+	num = num+3;
+	//printf("num 은 %d 입니다.\n", num);
+	p(num);
+
+	//5 - 1 은?
+	num -= 1;
+	//printf("num 은 %d 입니다.\n", num);
+	p(num);
+
+	//4 x 3 은?
+	num *= 3;
+	//printf("num 은 %d 입니다.\n", num);
+	p(num);
+
+	//12 / 6 은?
+	num /= 6;
+	//printf("num 은 %d 입니다.\n", num);
+	p(num);
+}
+
+
+//계산기 함수
+void p(int num);
+int add(int num1, int num2);
+int sub(int num1, int num2);
+int mul(int num1, int num2);
+int div(int num1, int num2);
+
 void main()
 {
-	//1번부터 30번까지 있는 반
-	//1번에서 5번까지 조별 발표
-	for (int i = 1; i <= 30; i++) {
-		if (i >= 6) {
-			printf("나머지 학생은 집에 가세요.\n");
-			break;
+	int num = 2;
+	num = add(num, 3);
+	p(num);
+
+	num = sub(num, 1);
+	p(num);
+
+	num = mul(num, 3);
+	p(num);
+
+	num = div(num, 6);
+	p(num);
+}
+
+void p(int num) {
+	printf("num 은 %d 입니다.\n", num);
+}
+
+int add(int num1, int num2) {
+	return num1 + num2;
+}
+
+int sub(int num1, int num2) {
+	return num1 - num2;
+}
+
+int mul(int num1, int num2) {
+	return num1 * num2;
+}
+
+int div(int num1, int num2) {
+	return num1 / num2;
+}
+
+
+//비밀번호 마스터
+int getRandomNumber(int level);
+void showQuestion(int level, int num1, int num2);
+void success();
+void fail();
+
+int main()
+{
+	//문이 5개가 있고, 각 문마다 점점 어려운 수식 퀴즈가 출제 (랜덤)
+	//맞히면 통과, 틀리면 실패
+
+	srand((unsigned)time(NULL));
+
+	int count = 0;
+
+	for (int i = 1; i <= 5; i++) {
+		int num1 = getRandomNumber(i);
+		int num2 = getRandomNumber(i);
+
+		showQuestion(i, num1, num2);
+
+		int answer = -1;
+		scanf_s("%d", &answer);
+		if (answer == -1) {
+			exit(0);
 		}
-		printf("%d 번 학생은 조별 발표 준비를 하세요.\n", i);
+		else if (answer == num1 * num2) {
+			success();
+			count++;
+		}
+		else {
+			fail();
+		}
 	}
 
-	//7번 학생이 아파서 결석
-	//7번 학생을 제외하고 6번부터 10번까지 조별 발표
-	for (int i = 1; i <= 30; i++) {
-		if (i >= 6&&i<=10) {
-			if (i == 7) {
-				printf("%d 번 학생은 결석입니다.\n", i);
-				continue;
-			}
-			printf("%d 번 학생은 조별 발표 준비를 하세요.\n", i);
-		}		
-	}
-}
-
-
-//랜덤
-int main(void)
-{
-	printf("난수 초기화 이전\n");
-	for (int i = 0; i < 10; i++) {
-		printf("%d ", rand() % 10);
-	}
-
-	srand((unsigned)time(NULL));
-	printf("\n난수 초기화 이후\n");
-	for (int i = 0; i < 10; i++) {
-		printf("%d ", rand() % 10);
-	}
-	return 0;
-}
-
-//가위 바위 보(0 1 2)
-int main()
-{
-	srand((unsigned)time(NULL));
-
-	int i = rand() % 3;
-
-	if (i == 0) {
-		printf("가위\n");
-	}
-	else if (i == 1) {
-		printf("바위\n");
-	}
-	else if (i == 2) {
-		printf("보\n");
-	}
-	else {
-		printf("몰라요\n");
-	}
-
-	switch (i) {
-	case 0:printf("가위\n"); break;
-	case 1:printf("바위\n"); break;
-	case 2:printf("보\n"); break;
-	default: printf("몰라요\n"); break;
-	}
-}
-
-
-//교통카드
-int main()
-{
-	int age = 15;
-	switch (age) {
-	case 8:
-	case 9:
-	case 10:
-	case 11:
-	case 12:
-	case 13:printf("초등학생입니다\n"); break;
-	case 14:
-	case 15:
-	case 16:printf("중학생입니다\n"); break;
-	case 17:
-	case 18:
-	case 19:printf("고등학생입니다\n"); break;
-	default: printf("학생이 아닌가봐요\n"); break;
-	}
+	printf("\n\n 당신은 5개의 비밀번호 중 %d개를 맞췄습니다 \n", count);
 
 	return 0;
 }
 
-
-//Up and Down
-int main()
-{
-	srand((unsigned)time(NULL));
-	
-	int answer = 1 + rand() % 100;
-	int n;
-
-	for (int chance = 0; chance < 5; chance++) {
-		printf("숫자를 입력하시오: ");
-		scanf_s("%d", &n);
-		
-		if (answer < n) {
-			printf("Down ↓\n");
-		}
-		else if (answer == n) {
-			printf("You Win!\n");
-			break;
-		}
-		else if (answer > n) {
-			printf("Up ↑\n");
-		}
-		else
-			printf("알 수 없는 오류가 발생했어요\n\n");
-
-		if (chance == 4) {
-			printf("You Lose\n");
-		}
-
-	}
-	
+int getRandomNumber(int level) {
+	return (1 + rand() % (level * 7));
 }
+
+void showQuestion(int level, int num1, int num2) {
+	printf("\n\n\n############# %d 번째 비밀번호 ##########\n", level);
+	printf("\n\t%d x %d 는?\n\n", num1, num2);
+	printf("#############################\n");
+	printf("비밀번호를 입력하세요(종료 : -1) >> ");
+}
+
+void success() {
+	printf("\n >> Good ! 정답입니다 \n");
+}
+
+void fail() {
+	printf("\n >> 떙 ! 틀렸습니다 \n");
+}
+
