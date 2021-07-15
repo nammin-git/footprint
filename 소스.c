@@ -1,140 +1,93 @@
+//배열
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
-//함수
 
 int main()
 {
-	//funciton
-	//계산기
 
-	int num = 2;
-	//printf("num 은 %d 입니다.\n", num);
-	p(num);
-
-	//2 + 3 은?
-	num = num+3;
-	//printf("num 은 %d 입니다.\n", num);
-	p(num);
-
-	//5 - 1 은?
-	num -= 1;
-	//printf("num 은 %d 입니다.\n", num);
-	p(num);
-
-	//4 x 3 은?
-	num *= 3;
-	//printf("num 은 %d 입니다.\n", num);
-	p(num);
-
-	//12 / 6 은?
-	num /= 6;
-	//printf("num 은 %d 입니다.\n", num);
-	p(num);
-}
+	int subway_1 = 30;
+	int subway_2 = 40;
+	int subway_3 = 50;
+	
+	printf("지하철 1호차에 %d 명이 타고 있습니다.\n", subway_1);
+	printf("지하철 2호차에 %d 명이 타고 있습니다.\n", subway_2);
+	printf("지하철 2호차에 %d 명이 타고 있습니다.\n", subway_3);
 
 
-//계산기 함수
-void p(int num);
-int add(int num1, int num2);
-int sub(int num1, int num2);
-int mul(int num1, int num2);
-int div(int num1, int num2);
+	//배열 ... 여러 개의 변수를 함께, 동시에 생성
+	int subway_array[3];
 
-void main()
-{
-	int num = 2;
-	num = add(num, 3);
-	p(num);
+	subway_array[0] = 30;
+	subway_array[1] = 40;
+	subway_array[2] = 50;
 
-	num = sub(num, 1);
-	p(num);
-
-	num = mul(num, 3);
-	p(num);
-
-	num = div(num, 6);
-	p(num);
-}
-
-void p(int num) {
-	printf("num 은 %d 입니다.\n", num);
-}
-
-int add(int num1, int num2) {
-	return num1 + num2;
-}
-
-int sub(int num1, int num2) {
-	return num1 - num2;
-}
-
-int mul(int num1, int num2) {
-	return num1 * num2;
-}
-
-int div(int num1, int num2) {
-	return num1 / num2;
-}
-
-
-//비밀번호 마스터
-int getRandomNumber(int level);
-void showQuestion(int level, int num1, int num2);
-void success();
-void fail();
-
-int main()
-{
-	//문이 5개가 있고, 각 문마다 점점 어려운 수식 퀴즈가 출제 (랜덤)
-	//맞히면 통과, 틀리면 실패
-
-	srand((unsigned)time(NULL));
-
-	int count = 0;
-
-	for (int i = 1; i <= 5; i++) {
-		int num1 = getRandomNumber(i);
-		int num2 = getRandomNumber(i);
-
-		showQuestion(i, num1, num2);
-
-		int answer = -1;
-		scanf_s("%d", &answer);
-		if (answer == -1) {
-			exit(0);
-		}
-		else if (answer == num1 * num2) {
-			success();
-			count++;
-		}
-		else {
-			fail();
-		}
+	for (int i = 0; i < 3; i++) {
+		printf("지하철 %d호차에 %d명이 타고 있습니다.\n", i+1, subway_array[i]);
 	}
 
-	printf("\n\n 당신은 5개의 비밀번호 중 %d개를 맞췄습니다 \n", count);
+	//값 설정 방법
+	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+	for (int i = 0; i < 10; i++) {
+		printf("%d\n", arr[i]);
+	}
+
+	int arr[]={1,2};	//자동으로 arr크기는 2
+	
+	int arr[10]={1,2};	//초기화 안 하면 자동으로 0 값을 가짐
+
+	//배열 크기는 항상 상수로 선언
+	int size = 10;
+	int arr[size];		//변수는 크기가 안 됨
+
+
+
+	//문자 vs 문자열
+	char c = 'A';
+	printf("%c\n", c);
+
+	//char str[6] = "coding";
+	//printf("%s\n", str);	//문자의 끝을 인식 못함
+
+	//문자열 끝에는 끝을 의미하는 NULL문자 포함해줘야 함
+	//문자열의 NULL문자는 \0
+	char str[7] = "coding";
+	printf("%s\n", str);
+
+	//사이즈 지정 안 해주면 자동으로 끝을 의미하는 문자 입력해줌
+	char str[] = "coding";
+	printf("%s\n", str);
+	printf("%d\n", sizeof(str));
+
+	//한글은 1글자에 2 byte
+	char kor[] = "나도코딩";
+	printf("%s\n", kor);
+	printf("%d\n", sizeof(kor));
+	
+
+	//문자열 심화
+	//char c_array[7] = { 'c','o','d','i','n','g','\0' };
+	char c_array[10] = { 'c','o','d','i','n','g' };
+	
+	printf("%s\n", c_array);
+	
+	for (int i = 0; i < sizeof(c_array); i++) {
+		printf("%c\n", c_array[i]);
+	}
+	
+	for (int i = 0; i < sizeof(c_array); i++) {
+		printf("%d\n", c_array[i]);
+	}	
+
+	//문자열 입력받기
+	char name[256];
+	printf("이름을 입력하세요: ");
+	scanf_s("%s", name, sizeof(name));
+
+	printf("\n입력받은 이름은 %s입니다.\n", name);
+
+	//아스키 코드
+	for (int i = 0; i < 128; i++) {
+		printf("아스키코드 정수 %d : %c\n", i, i);
+	}
 
 	return 0;
 }
-
-int getRandomNumber(int level) {
-	return (1 + rand() % (level * 7));
-}
-
-void showQuestion(int level, int num1, int num2) {
-	printf("\n\n\n############# %d 번째 비밀번호 ##########\n", level);
-	printf("\n\t%d x %d 는?\n\n", num1, num2);
-	printf("#############################\n");
-	printf("비밀번호를 입력하세요(종료 : -1) >> ");
-}
-
-void success() {
-	printf("\n >> Good ! 정답입니다 \n");
-}
-
-void fail() {
-	printf("\n >> 떙 ! 틀렸습니다 \n");
-}
-
