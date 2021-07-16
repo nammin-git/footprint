@@ -1,93 +1,120 @@
-//배열
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#define BOTTLE 4
 
-int main()
+void main()
 {
+	srand((unsigned)time(NULL));
 
-	int subway_1 = 30;
-	int subway_2 = 40;
-	int subway_3 = 50;
-	
-	printf("지하철 1호차에 %d 명이 타고 있습니다.\n", subway_1);
-	printf("지하철 2호차에 %d 명이 타고 있습니다.\n", subway_2);
-	printf("지하철 2호차에 %d 명이 타고 있습니다.\n", subway_3);
+	printf("\n\n === 아빠는 대머리 게임 === \n\n");
 
+	int answer;
+	int treatment = rand() % BOTTLE;
+	int isIncluded = 0;
+	int hint = 0;
+	char blank = 0;
 
-	//배열 ... 여러 개의 변수를 함께, 동시에 생성
-	int subway_array[3];
+	//발모제 찾기 시도 
+	for (int i = 1; i <= 3; i++) {
+		//1차 시도 (숫자 하나 입력 가능)
+		printf("발모제를 찾아봅시다\n숫자 %d 개를 입력하세요(숫자들 사이는 띄어쓰기): ", i);
 
-	subway_array[0] = 30;
-	subway_array[1] = 40;
-	subway_array[2] = 50;
-
-	for (int i = 0; i < 3; i++) {
-		printf("지하철 %d호차에 %d명이 타고 있습니다.\n", i+1, subway_array[i]);
+		int j = 0;
+		do {
+			scanf_s("%d", &hint);
+			if (hint == treatment) {
+				isIncluded++;
+			}
+			j++;
+		} while (j <= i);
+		scanf_s("%c", &blank, 1);
 	}
 
-	//값 설정 방법
-	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
-	for (int i = 0; i < 10; i++) {
-		printf("%d\n", arr[i]);
+
+	//발모제 선택
+	printf("발모제를 선택하세요: ");
+	scanf_s("%d", answer);
+
+	if (answer == treatment + 1) {
+		printf(" >> 성공 ! 발모제를 찾았습니다.\n 축하해요 !! 머리가 자랐네요 !\n");
+	}
+	else {
+		printf(" >> 땡 ! 발모제는 %d번입니다...\n머리가 자라지 않았습니다ㅠㅠ\n");
 	}
 
-	int arr[]={1,2};	//자동으로 arr크기는 2
-	
-	int arr[10]={1,2};	//초기화 안 하면 자동으로 0 값을 가짐
 
-	//배열 크기는 항상 상수로 선언
-	int size = 10;
-	int arr[size];		//변수는 크기가 안 됨
-
-
-
-	//문자 vs 문자열
-	char c = 'A';
-	printf("%c\n", c);
-
-	//char str[6] = "coding";
-	//printf("%s\n", str);	//문자의 끝을 인식 못함
-
-	//문자열 끝에는 끝을 의미하는 NULL문자 포함해줘야 함
-	//문자열의 NULL문자는 \0
-	char str[7] = "coding";
-	printf("%s\n", str);
-
-	//사이즈 지정 안 해주면 자동으로 끝을 의미하는 문자 입력해줌
-	char str[] = "coding";
-	printf("%s\n", str);
-	printf("%d\n", sizeof(str));
-
-	//한글은 1글자에 2 byte
-	char kor[] = "나도코딩";
-	printf("%s\n", kor);
-	printf("%d\n", sizeof(kor));
-	
-
-	//문자열 심화
-	//char c_array[7] = { 'c','o','d','i','n','g','\0' };
-	char c_array[10] = { 'c','o','d','i','n','g' };
-	
-	printf("%s\n", c_array);
-	
-	for (int i = 0; i < sizeof(c_array); i++) {
-		printf("%c\n", c_array[i]);
-	}
-	
-	for (int i = 0; i < sizeof(c_array); i++) {
-		printf("%d\n", c_array[i]);
-	}	
-
-	//문자열 입력받기
-	char name[256];
-	printf("이름을 입력하세요: ");
-	scanf_s("%s", name, sizeof(name));
-
-	printf("\n입력받은 이름은 %s입니다.\n", name);
-
-	//아스키 코드
-	for (int i = 0; i < 128; i++) {
-		printf("아스키코드 정수 %d : %c\n", i, i);
-	}
-
-	return 0;
 }
+
+
+int main(void) {
+	srand((unsigned)time(NULL));
+
+	printf("\n\n === 아빠는 대머리 게임 === \n\n");
+
+	int answer;		//사용자 입력값
+	int treatment = rand() % 4;		//발모제 선택 (0~3)
+
+	int cntShowBottle = 0;	//이번 게임에 보여줄 병 갯수
+	int prevCntShowBottle = 0;	//앞 게임에 보여준 병 갯수
+	//보여주는 병 갯수를 차차 늘려줌으로써 정답률 향상
+
+	//3번의 기회 (3번의 발모제 투여 시도)
+	for (int i = 1; i <= 3; i++) {
+		int bottle[4] = { 0 };	//4개의 병
+		do {
+			cntShowBottle = rand() % 2 + 2;		//2~3개의 병이 뽑히도록 설정
+		} while (cntShowBottle == prevCntShowBottle);
+		prevCntShowBottle = cntShowBottle;
+
+		int isIncluded = 0;		//보여줄 병 중에 발모제가 포함되었는지 여부
+		printf(" > %d 번째 시도 : ", i);
+
+		//보여줄 병 종류를 선택
+		for (int j = 0; j < cntShowBottle; j++) {
+			int randBottle = rand() % 4;	//병을 뽑습니다
+
+			//아직 선택되지 않은 병이면 >>>> 선택 처리
+			if (bottle[randBottle] == 0) {
+				bottle[randBottle] = 1;
+				if (randBottle == treatment) {
+					isIncluded = 1;
+				}
+			}
+			//이미 선택된 병이면 >>>> 중복이므로 다시 선택
+			else {
+				j--;
+			}
+		}
+
+		//사용자에게 문제 표시
+		for (int k = 0; k < 4; k++) {
+			if (bottle[k] == 1)
+				printf("%d ", k + 1);
+		}
+		printf("물약을 머리에 바릅니다\n");
+
+		if (isIncluded == 1) {
+			printf("  >> 성공! 머리가 났어요 !!\n");
+		}
+		else {
+			printf("  >> 실패! 머리가 나지 않았어요.. ㅠㅠ\n");
+		}
+
+		printf("\n ... 계속하려면 아무 키나 누르세요 ...");
+		getchar();
+	}
+
+	printf("\n\n발모제는 몇 번일까요? ");
+	scanf_s("%d", &answer);
+
+	if (answer == treatment + 1) {
+		printf("\n >> 정답입니다!\n");
+	}
+	else
+	{
+		printf("\n >> 땡 ! 틀렸어요, 정답은 %d 입니다!\n", treatment + 1);
+	}
+
+}
+
