@@ -1,74 +1,161 @@
-//정보처리기사 필기
-//1과목 소프트웨어 설계
-//소프트웨어 생명 주기
-1. 폭포수 모형
-- 선형 순차적 모형 : 한 단계가 끝나야만 다음 단계로 넘어감
-- 가장 오래되고 폭넓게 사용됨 >> 고전적 생명 주기 모형
-- (타장성 검토 > 계획 > ) 요구 분석 > 설계 > 구현 > 테스트(검사) > 유지보수
-#분설구테유
-장 : 단계별 정의 및 산출물이 명확
-단 : 개발 중간에 요구 사항 변경이 어려움
+#include <stdio.h>
+#include <time.h>
+/*
+void swap(int a, int b);
+void swap_addr(int* a, int* b);
 
-2. 프로토타입 모형 = 원형 모형
-- 견본품을 만들어 최종 결과물을 예측
-- 인터페이스에 중점
-장 : 개발 중간에 요구사항 변경이 쉬움
-
-3. 나선형 모델 = 점진적 모델
-- 폭포수 장점 + 프로토타입 장점 + 위험 분석 기능
-- 점진적 개발 과정 반복 >> 요구사항 추가 가능
-- 정밀함
-- 유지보수 과정 필요 없음
-- 계획 및 정의 > 위험 분석 > 공학적 개발 > 고객 평가
-#계위개고
-
-4.애자일 모형 (애자일 : 민첩하다, 기민하다는 뜻)
-- 일정한 주기를 반복하면서 개발 과정 진행
-- 기능 중심 개발
-- 고객과의 소통에 초점
--eXtreme Programming, 스크럼, 칸반, 크리스탈, 린
-#엑스칸크린
-장 : 변화에 유연하게 대응 가능
+void main()
+{
+	//SWAP 
+	int a = 10;
+	int b = 20;
+	printf("a 의 주소 : %d\n", &a);
+	printf("b 의 주소 : %d\n", &b);
 
 
-//스크럼 기법 ... 애자일 개발 과정의 하나
-스크럼 기법
-- 팀원 스스로가 스크럼 팀 구성
-- 개발 작업에 관한 모든 것을 스스로 해결해야 함
-- 스프린트는 2~4주 정도의 기간으로 진행(스프린트 : 반복적인 개발 주기)
+	printf("\n============\n\n");
 
-- 스크럼 개발 프로세스
-  스프린트 계획 회의 > 스프린트 > 일일 스크럼 회의 > 스크럼 검토 회의 > 스프린트 회고
-#계스일검회
+	//값에 의한 복사 (Call by Value) ... 값만 복사함
 
-1) 제품 책임자(Product Owner)
-- 요구 사항이 담긴 백로그를 작성하는 주체 >> 의뢰자
-- 백로그에 대한 우선 순위를 지정
-- 이해관계자들의 의견을 종합
+	printf("Swap 함수 전 => a : %d,  b : %d\n", a, b);
+	swap(a, b);
+	printf("Swap 함수 후 => a : %d,  b : %d\n", a, b);
 
-2) 스크럼 마스터(Scrum Master)
-- 일일 스크럼 회의 주관
-- 팀원들을 통제하는 것이 목표가 아님
+	printf("\n============\n\n");
 
-3) 개발팀(Development Team)
-- 제품 책임자와 스크럼 마스터를 제외한 모든 팀원
-- 최대 인원 7~8인
+	//주소값을 넘기면? 
+	printf("(주소값 전달)Swap 함수 전 => a : %d,  b : %d\n", a, b);
+	swap_addr(&a, &b);
+	printf("(주소값 전달)Swap 함수 후 => a : %d,  b : %d\n", a, b);
+
+}
+
+void swap(int a, int b) {
+	int temp = a;
+	a = b;
+	b = temp;
+	
+	printf("Swap 함수 내 a 의 주소 : %d\n", &a);
+	printf("Swap 함수 내 b 의 주소 : %d\n", &b);
+	printf("Swap 함수 내 => a : %d,  b : %d\n", a, b);
+}
+
+void swap_addr(int* a, int* b) {
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+
+	printf("(주소값 전달)Swap 함수 내 a 의 주소 : %d\n", &a);
+	printf("(주소값 전달)Swap 함수 내 b 의 주소 : %d\n", &b);
+	printf("(주소값 전달)Swap 함수 내 => a : %d,  b : %d\n", *a, *b);
+
+}
+*/
+/*
+void changeArray(int* ptr);
+
+//포인터로 배열 값 변경하기
+void main()
+{
+	int arr2[3] = { 10,20,30 };
+	changeArray(arr2);
+
+	for (int i = 0; i < 3; i++) {
+		printf("%d\n", arr2[i]);
+	}
+
+}
+
+void changeArray(int* ptr) {
+	ptr[2] = 50;
+
+}
+*/
 
 
-//XP(eXtreme Programming)
-1) XP의 핵심 가치
-- 용기
-- 단순성
-- 의사소통
-- 피드백
-- 존중
-#용단의피존
+//물고기 키우기 프로젝트
+//...물고기 6마리가 어항에 살고 있어요
+//...이들은 덥고 건조한 사막에 있어서, 물을 계속 주지 않으면 어항 속의 물이 증발해버려요
+//...어항을 클릭하면 물을 줄 수 있어요
+//...시간이 지날수록 물고기는 자란답니다 
 
-2) XP의 기본원리
-- Whole Team
-- Small Releases
-- Test-Driven Development
-- Continuous Intergration
-- Collective Ownership
-- Pair Programming
-- Design Improvement / Refactoring
+int level;
+int arrayFish[6];
+int* cursor;
+
+void initData();
+void printfFishes();
+void decreaseWater(long elpasedTime);
+
+int main(void)
+{
+	long startTime = 0;		//게임 시작 시간
+	long totalElapsedTime = 0;		//총 경과 시간
+	long prevElapsedTime = 0;		//직전 경과 시간 ( 최근에 물을 준 시간 간격)
+	
+	int num;	//몇 번 어항에 물을 줄 것인지, 사용자 입력
+	initData();
+
+	cursor = arrayFish;
+
+	startTime = clock();
+	while (1) {
+		printfFishes();
+		printf("몇 번 어항에 물을 주시겠어요? ");
+		scanf_s("%d", &num);
+
+		//입력값 체크
+		if (num < 1 || num>6) {
+			printf("\n입력값이 잘못되었습니다\n");
+			continue;
+		}
+
+		//총 경과 시간
+		totalElapsedTime = (clock() - startTime)/CLOCKS_PER_SEC;
+		printf("총 경과 시간 : %ld 초\n", totalElapsedTime);
+	
+		//직전 물 준 시간
+		//마지막으로 물 준 시간 이후로 흐른 시간
+		prevElapsedTime = totalElapsedTime - prevElapsedTime;
+		printf("최근 경과 시간 : %ld 초\n", prevElapsedTime);
+
+		//어항의 물을 감소 (증발)
+		decreaseWater(prevElapsedTime);
+
+
+		//사용자가 입력한 어항에 물을 준다
+		//1. 어항의 물이 0이면?  >>  물을 주지 않는다
+		if (cursor[num - 1] <= 0) {
+			printf("%d 번 물고기는 이미 죽었습니다. 물을 주지 않습니다.\n", num);
+		}
+	}
+
+	return 0;
+}
+
+void initData() {
+
+	level = 1;	//게임 레벨 (1-5)
+	for (int i = 0; i < 6; i++) {
+		arrayFish[i] = 100;	//어항의 물 높이(0-100)
+	}
+
+}
+
+void printfFishes() {
+	printf("%3d번 %3d번 %3d번 %3d번 %3d번 %3d번\n", 1, 2, 3, 4, 5, 6);
+	for (int i = 0; i < 6; i++) {
+		printf(" %4d ", arrayFish[i]);
+	}
+	printf("\n\n");
+}
+
+void decreaseWater(long elpasedTime) {
+	for (int i = 0; i < 6; i++) {
+		arrayFish[i] -= (level * 3 * (int)elpasedTime);
+		if (arrayFish[i] < 0) {
+			arrayFish[i] = 0;
+		}
+	}
+}
+
