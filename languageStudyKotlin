@@ -1,39 +1,35 @@
 package com.example.mgproject
 
-import android.graphics.EmbossMaskFilter
+//클래스가 상속 가능하게 하려면 open class
+open class English(open val lang : String = "English") {
+    init {
+        println("<<< This is English >>>")
+    }
 
-//1. 함수
-//Hello World!
-
-
-//2. var & val
-//3. String Template
-//숫자와 이름을 출력하는 기차표
-
-
-//4. 조건식
-//getMax()
-//getMax2()
-//checkCandies
+    //메서드가 오버라이딩 가능하게 하려고 해도 open fun
+    open fun singASong(){
+        println("lalala")
+    }
+}
 
 
-//5. array 와 list
-//6. 반복문
+class Korean : English() {
+    init {
+        println("<<< This is Korean >>>")
+    }
+
+    override val lang = "Korean"
+
+    override fun singASong() {
+        super.singASong()
+        println("language = ${super.lang}")
+        println("라라라")
+        println("language = ${this.lang}")
+    }
+}
 
 
 fun main() {
-    //1. hiWorld()
-
-    //2.
-    // 3. trainTicket()
-
-    //4. getMax(10, 20)
-    //getMax2(20, 10)
-    //checkCandies(candies)
-
-    //5.
-    //6.classAHeight()
-
-
+    val singer = Korean()
+    singer.singASong()
 }
-
