@@ -1,154 +1,60 @@
 package com.example.mgproject
 
+// 1. Lamda
+// value 처럼 다룰 수 있는 익명함수
+// 1) 메소드의 파라미터로 넘겨줄 수 있다 fun maxBy(fun ~)
+// 2) return 값으로 사용할 수 있다 return fun ~
 
-//1. 함수
-fun helloWorld(){
-    println("Hello World!")
-}
+// 람다의 기본 정의
+// val lamdaName : Type = {argumentList -> codeBody}
 
-fun add(a : Int, b : Int) : Int {
-    return a+b
-}
+val square : (Int) -> (Int) = {number -> number*number}
 
-
-//2. val vs var
-
-fun hi(){
-    val a : Int = 10    //value
-    var b : Int = 9     //variation
-
-    //a = 100
-    b = 100
-
-    var name1 : String = "Meggy"
-    var name2 = "Joyce"
-    var name3 : String
-    name3 = "Hesse"
+val nameAge = {name : String, age : Int ->
+    "My name is ${name} I'm ${age}"
 }
 
 
-//3. String Template
+// 확장함수
+// 있는 클래스를 확장하고 싶을 때
 
-fun nameAge(){
+val pizzaIsGreat : String.() -> String = {
+    this + "\"Pizza is the best!\""
+}
 
-    val name = "Meggy"
-    val lastName = "Hong"
-    println("My name is ${name + lastName} I'm 23")
-    println("this is 2\$")
+fun extendString(name : String, age : Int) : String {
 
+    val introduceMyself : String.(Int) -> String = {"I am this ${this} and ${it} years old"}
+    return name.introduceMyself(age)
 }
 
 
-//4. 조건식
+// 람다의 Return
+// 마지막 한 줄이 return을 의미한다
 
-fun maxBy(a : Int, b : Int) : Int{
-    if(a>b){
-        return a
-    }else{
-        return b
-    }
-}
-
-fun maxBy2(a : Int, b : Int) : Int = if(a>b) a else b
-
-fun checkNum(score : Int) {
-    when(score) {
-        0 -> println("this is 0")
-        1 -> println("this is 1")
-        2,3 -> println("this is 2 or 3")
-        else -> println("this is 0")
-    }
-
-    var b : Int = when(score){
-        1-> 1
-        2-> 2
-        else -> 3
-    }
-
-    println("b : ${b}")
-
-    when(score){
-        in 90..100 -> println("You are genius")
-        in 10..80 -> println("Not bad")
-        else -> println("Okay")
+val calculateGrade : (Int) -> String = {
+    when(it){
+        in 0..40 -> "fail"
+        in 41..70 -> "pass"
+        in 71..100 -> "perfect"
     }
 }
 
 
-//5. Array and List
 
-//Array
-//List 1. List 2.MutableList
 
-fun array() {
-    val array = arrayOf(1, 2, 3)
-    val list = listOf(1, 2, 3)
+fun main() {
+    println(square(12))
+    println(nameAge("Joyce", 99))
 
-    val array2 = arrayOf(1, "d", 3.4f)
-    val list2 = listOf(1, "d", 3.4f)
+    val a = "joyce said"
+    val b = "meggy said"
+    println(a.pizzaIsGreat())
+    println(b.pizzaIsGreat())
 
-    //MutableList 값 변경 가능
-    //Array 는 MutableList 의 대표
-    array[0] = 3
-
-    var arrayList = arrayListOf<Int>()
-    arrayList.add(10)
-    arrayList.add(20)
-
+    println(extendString("Ariana", 28))
 }
 
-
-//6. For and While
-
-fun for1(){
-    val students = arrayListOf("Joyce", "James", "Matthew", "Lucy")
-
-    for( name : String in students){
-        println("${name}")
-    }
-}
-
-fun for2(){
-    var sum : Int = 0
-    for( i : Int in 1..10){
-        sum += i
-    }
-
-    println(sum)
-
-    var result : Int = 0
-    for (j : Int in 1 until 100){
-        result = j
-    }
-
-    println(result)
-}
-
-fun sampleWhile() {
-    var index = 0
-    while(index<10){
-        println("current index = ${index}")
-        index++
-    }
-}
-
-
-fun main(){
-    helloWorld()
-
-    println(add(a= 4, b= 5))
-
-    nameAge()
-
-    maxBy(8, 9)
-    maxBy2(7,5)
-    checkNum(score = 1)
-
-    for1()
-    for2()
-    sampleWhile()
-
-}
 
 
 
