@@ -1,35 +1,81 @@
 package com.example.mgproject
 
-//클래스가 상속 가능하게 하려면 open class
-open class English(open val lang : String = "English") {
-    init {
-        println("<<< This is English >>>")
-    }
+// 1. Lamda
+// value 처럼 다룰 수 있는 익명함수
+// 1) 메소드의 파라미터로 넘겨줄 수 있다 fun maxBy(fun ~)
+// 2) return 값으로 사용할 수 있다 return fun ~
 
-    //메서드가 오버라이딩 가능하게 하려고 해도 open fun
-    open fun singASong(){
-        println("lalala")
+// 람다의 기본 정의
+// val lamdaName : Type = {argumentList -> codeBody}
+
+val square : (Int) -> (Int) = {number -> number*number}
+
+val nameAge = {name : String, age : Int ->
+    "My name is ${name} I'm ${age}"
+}
+
+
+// 확장함수
+// 있는 클래스를 확장하고 싶을 때
+
+val pizzaIsGreat : String.() -> String = {
+    this + "\"Pizza is the best!\""
+}
+
+fun extendString(name : String, age : Int) : String {
+
+    val introduceMyself : String.(Int) -> String = {"I am this ${this} and ${it} years old"}
+    return name.introduceMyself(age)
+}
+
+
+// 람다의 Return
+// 마지막 한 줄이 return을 의미한다
+// = 마지막 표현식이 return 의 value 타입을 표현한다
+
+val calculateGrade : (Int) -> String = {
+    when(it){
+        in 0..40 -> "fail"
+        in 41..70 -> "pass"
+        in 71..100 -> "perfect"
+        else -> "Error"     //꼭 String 형식을 반환해줘야 해서 else 빼먹으면 안 됨
     }
 }
 
 
-class Korean : English() {
-    init {
-        println("<<< This is Korean >>>")
-    }
-
-    override val lang = "Korean"
-
-    override fun singASong() {
-        super.singASong()
-        println("language = ${super.lang}")
-        println("라라라")
-        println("language = ${this.lang}")
-    }
+// 람다를 표현하는 여러가지 방법
+fun invokeLamda(lamda : (Double) -> Boolean) : Boolean {
+    return lamda(5.234)
 }
+
+
 
 
 fun main() {
-    val singer = Korean()
-    singer.singASong()
+    println(square(12))
+    println(nameAge("Joyce", 99))
+
+    val a = "joyce said"
+    val b = "meggy said"
+    println(a.pizzaIsGreat())
+    println(b.pizzaIsGreat())
+
+    println(extendString("Ariana", 28))
+
+    val lamda : (Double) -> (Boolean) = {number : Double ->
+        number == 4.3213
+    }
+
+    println(invokeLamda(lamda))
+
+    //람다 literal
+    println(invokeLamda({true}))
+    println(invokeLamda({it > 3.22}))
+
+    //function 의 마지막 파라미터가 람다식일 때에는 소괄호 생략 가능
+   println(invokeLamda { it > 3.22 })
+
+
+
 }
+
