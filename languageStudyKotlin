@@ -1,83 +1,85 @@
 package com.example.mgproject
 
-// 1. Lamda
-// value 처럼 다룰 수 있는 익명함수
-// 1) 메소드의 파라미터로 넘겨줄 수 있다 fun maxBy(fun ~)
-// 2) return 값으로 사용할 수 있다 return fun ~
+//1. Data Class
+// 데이터를 담는 그릇
+// pojo Class
+// 모델이 되는 클래스라 틀만 있음
 
-// 람다의 기본 정의
-// val lamdaName : Type = {argumentList -> codeBody}
+data class Ticket(val companyName : String, val passengerName : String, var date : String, var seatNumber : Int)
+// toString(), hashCode(), equals(), copy() 컴파일 시 자동으로 만들어짐
 
-val square : (Int) -> (Int) = {number -> number*number}
-
-val nameAge = {name : String, age : Int ->
-    "My name is ${name} I'm ${age}"
-}
+class TicketNormal(val companyName : String, val passengerName : String, var date : String, var seatNumber : Int)
 
 
-// 확장함수
-// 있는 클래스를 확장하고 싶을 때
 
-val pizzaIsGreat : String.() -> String = {
-    this + "\"Pizza is the best!\""
-}
+//2. Companion Method
+// 자바의 Static 대신에 사용되는 것
+// 정적인 메서드나 정적인 변수를 선언할 때 씀
 
-fun extendString(name : String, age : Int) : String {
+// book이라는 클래스가 있고, book 이라는 객체를 만들어주는 factory 함수
+class Book private constructor(val id: Int, val name : String){
+    //private constructor >> 다른 곳에서는 객체 생성 못함
 
-    val introduceMyself : String.(Int) -> String = {"I am this ${this} and ${it} years old"}
-    return name.introduceMyself(age)
-}
+    companion object BookFactory : IdProvider{      //private property 나 method 를 읽어올 수 있게 해줌
 
+        override fun getId(): Int {
+            return 444
+        }
 
-// 람다의 Return
-// 마지막 한 줄이 return을 의미한다
-// = 마지막 표현식이 return 의 value 타입을 표현한다
+        val myBook = "new book"
 
-val calculateGrade : (Int) -> String = {
-    when(it){
-        in 0..40 -> "fail"
-        in 41..70 -> "pass"
-        in 71..100 -> "perfect"
-        else -> "Error"     //꼭 String 형식을 반환해줘야 해서 else 빼먹으면 안 됨
+        fun create() = Book(getId(), myBook)
     }
 }
 
-
-// 람다를 표현하는 여러가지 방법
-fun invokeLamda(lamda : (Double) -> Boolean) : Boolean {
-    return lamda(5.234)
+//상속도 받을 수 있다
+interface IdProvider {
+    fun getId() : Int
 }
 
+
+
+//3. Object
+// Singleton Pattern
+object CarFactory{
+    val cars = mutableListOf<Car>()
+
+    fun makeCar(horsePower: Int) : Car {
+        val car = Car(horsePower)
+        cars.add(car)
+        return car
+    }
+}
+
+data class Car(val horsePower : Int)
 
 
 
 fun main() {
-    println(square(12))
-    println(nameAge("Joyce", 99))
+    //Data Class 로 만든 티켓
+    val ticketA = Ticket("KoreanAir", "JoyceHong", "2020-02-16", 14)
+    val ticketB = TicketNormal("KoreanAir", "JoyceHong", "2020-02-16", 14)
 
-    val a = "joyce said"
-    val b = "meggy said"
-    println(a.pizzaIsGreat())
-    println(b.pizzaIsGreat())
-
-    println(extendString("Ariana", 28))
-
-    val lamda : (Double) -> (Boolean) = {number : Double ->
-        number == 4.3213
-    }
-
-    println(invokeLamda(lamda))
-
-    //람다 literal
-    println(invokeLamda({true}))
-    println(invokeLamda({it > 3.22}))
-
-    //function 의 마지막 파라미터가 람다식일 때에는 소괄호 생략 가능
-   println(invokeLamda { it > 3.22 })
+    println(ticketA)
+    println(ticketB)
 
 
+
+    //val booktmp = Book()      //private constructor 라 객체 생성 불가능
+    val book = Book.create()
+
+    val bookId = Book.BookFactory.getId()
+
+    println("${book.id} ${book.name}")
+
+
+
+    //Object Pattern
+    val car = CarFactory.makeCar(10)
+    val car2 = CarFactory.makeCar(200)
+
+    println(car)
+    println(car2)
+    println(CarFactory.cars.size.toString())
 
 }
-
-
-
