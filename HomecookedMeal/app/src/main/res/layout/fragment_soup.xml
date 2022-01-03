@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SoupFragment">
+
+    <TextView
+        android:id="@+id/pageSoup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="2. 국"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <CheckBox
+            android:id="@+id/checkSoupOption1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="순두부찌개" />
+
+        <CheckBox
+            android:id="@+id/checkDIshSideOption2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="된장찌개" />
+
+        <CheckBox
+            android:id="@+id/checkDIshSideOption3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="김치찌개" />
+
+        <CheckBox
+            android:id="@+id/checkDIshSideOption4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="미역국" />
+
+        <CheckBox
+            android:id="@+id/checkDIshSideOption5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="계란국" />
+
+        <CheckBox
+            android:id="@+id/checkSoupOption6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="짜글이" />
+
+        <CheckBox
+            android:id="@+id/checkSoupOption7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="기타" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnBack2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="20dp"
+        android:text="이전"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnNext2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnNext2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="20dp"
+        android:text="다음"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnBack2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
