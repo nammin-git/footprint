@@ -1,0 +1,6 @@
+com/mgprogect/twice/BuildConfig.java
+ com.mgprogect.twice.BuildConfig
+com/mgprogect/twice/databinding/ActivitySplashBinding.java
+ com.mgprogect.twice.databinding.ActivitySplashBinding
+com/mgprogect/twice/databinding/ActivityMainBinding.java
+ com.mgprogect.twice.databinding.ActivityMainBinding
