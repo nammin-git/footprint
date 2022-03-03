@@ -11,12 +11,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //데이터 만들기
-        val listFruit = mutableListOf<String>()
+        val listFruit = mutableListOf<ListViewModel>()
 
-        listFruit.add("apple")
-        listFruit.add("banana")
-        listFruit.add("banana")
-        listFruit.add("pear")
+        listFruit.add(ListViewModel("a", "b"))
+        listFruit.add(ListViewModel("c", "d"))
+        listFruit.add(ListViewModel("e", "f"))
 
         //메인엑티비티 >> 어댐터 ... 데이터 넘겨주기
         val adapter = ListViewAdapter(listFruit)

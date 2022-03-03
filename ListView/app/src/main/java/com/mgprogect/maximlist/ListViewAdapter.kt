@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 
-class ListViewAdapter(val List : MutableList<String> /*문자열 데이터를 받겠습니다)*/) : BaseAdapter()/*베이스 어댑터의 자식입니다*/ {
+class ListViewAdapter(val List : MutableList<ListViewModel> /*문자열 데이터를 받겠습니다)*/) : BaseAdapter()/*베이스 어댑터의 자식입니다*/ {
     /*
     * 원하는 것: 리스트에 각각의 데이터를 보내고 싶다
     * 메인 액티비티에서 어댑터로 [a, b, c] 라는 데이터를 보냅니다
