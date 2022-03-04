@@ -42,6 +42,12 @@ class ListViewAdapter(val List : MutableList<ListViewModel> /*문자열 데이�
             convertView_join = LayoutInflater.from(parent?.context).inflate(R.layout.listview_file, parent, false)
         }
 
+        val title = convertView!!.findViewById<TextView>(R.id.listview_Box1)
+        val content = convertView!!.findViewById<TextView>(R.id.listview_Box2)
+
+        title.text = List[position].title
+        content.text = List[position].content
+
         //라인을 하나 가져온 다음에 컨버트뷰를 되돌려줌
         return convertView_join!!
 
