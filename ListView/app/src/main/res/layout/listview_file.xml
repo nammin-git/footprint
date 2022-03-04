@@ -5,10 +5,18 @@
     android:layout_height="80dp">
 
     <TextView
-        android:id="@+id/listview_firstLine"
+        android:id="@+id/listview_Box1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="리스트뷰 첫번째 줄"
+        android:text="리스트뷰 첫번째 칸"
+        android:textSize="38sp"
+        android:layout_margin="5dp"/>
+
+    <TextView
+        android:id="@+id/listview_Box2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="리스트뷰 두번째 칸"
         android:textSize="38sp"
         android:layout_margin="5dp"/>
 
