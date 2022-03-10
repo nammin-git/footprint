@@ -25,7 +25,7 @@
             android:gravity="center"
             android:text="명언이 들어갈 위치입니다"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="28sp"
             android:fontFamily="@font/bmjua_ttf"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
