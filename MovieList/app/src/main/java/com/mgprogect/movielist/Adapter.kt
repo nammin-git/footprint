@@ -8,13 +8,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ContentView
 
-class Adapter(val List: MutableList<String>): BaseAdapter() {
+class Adapter(private val items: MutableList<MovieClass>): BaseAdapter() {
     override fun getCount(): Int {
-        return List.size
+        return items.size
     }
 
     override fun getItem(position: Int): Any {
-        return List[position]
+        return items[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -28,6 +28,9 @@ class Adapter(val List: MutableList<String>): BaseAdapter() {
             convertView = LayoutInflater.from(parent?.context).inflate(R.layout.listview, parent, false)
         }
 
+        val item: MovieClass = items[position]
+
+        convertView.poster
         val listviewImage = convertView?.findViewById<ImageView>(R.id.poster)
         val listviewMovieName = convertView?.findViewById<TextView>(R.id.movieName)
         val listviewGrade = convertView?.findViewById<TextView>(R.id.grade)
