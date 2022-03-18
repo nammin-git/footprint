@@ -30,16 +30,10 @@ class Adapter(private val items: MutableList<MovieClass>): BaseAdapter() {
 
         val item: MovieClass = items[position]
 
-        convertView.poster
-        val listviewImage = convertView?.findViewById<ImageView>(R.id.poster)
+        val listviewImage = convertView?.findViewById<ImageView>(R.id.poster_img)
         val listviewMovieName = convertView?.findViewById<TextView>(R.id.movieName)
         val listviewGrade = convertView?.findViewById<TextView>(R.id.grade)
 
-        listviewImage!!.setImageResource(position)
-        listviewMovieName!!.text = List[position]
-        listviewGrade!!.text = List[position]
-
         return convertView!!
-
     }
 }
