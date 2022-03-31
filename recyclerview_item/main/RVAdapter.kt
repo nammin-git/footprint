@@ -1,13 +1,15 @@
 package com.mgprogect.recyclerview_item
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class RVAdapter(val items: MutableList<String>): RecyclerView.Adapter<RVAdapter.ViewHolder> {
+class RVAdapter(val items: MutableList<String>): RecyclerView.Adapter<RVAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RVAdapter.ViewHolder {
         //리사이클러뷰에 아이템을 가져와줌
-        TODO("Not yet implemented")
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.rv_item, parent, false)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: RVAdapter.ViewHolder, position: Int) {
