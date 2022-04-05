@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.findNavController
 
 class SecondFragment : Fragment() {
 
@@ -22,11 +23,11 @@ class SecondFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_second, container, false)
 
         view.findViewById<Button>(R.id.btn1).setOnClickListener {
-
+            it.findNavController().navigate(R.id.action_firtstFragment_to_secondFragment)
         }
 
         view.findViewById<Button>(R.id.btn2).setOnClickListener {
-
+            it.findNavController().navigate(R.id.action_firtstFragment_to_thirdFragment)
         }
 
         return inflater.inflate(R.layout.fragment_second, container, false)
