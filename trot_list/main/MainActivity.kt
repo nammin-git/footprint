@@ -16,6 +16,6 @@ class MainActivity : AppCompatActivity() {
             //2-1. fragment 를 navigation 에 연결
             //2-2. fragment 에서 버튼 누르면 이동하기
 
-        //3. recyclerView 만들기
+        //3. recyclerView  만들기
     }
 }
