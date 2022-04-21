@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "551744956322",
+    "project_id": "fir-email-password-auth-b20c9",
+    "storage_bucket": "fir-email-password-auth-b20c9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551744956322:android:81dc74efe701cdf8a374fb",
+        "android_client_info": {
+          "package_name": "om.mgprogect.fb_email_password_auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "551744956322-qg8kjgu0h6iu28rc97jt7k1cep8pooid.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3P7n7FMHFXxIGk9T5eo4OZ8Xcf-Dsx7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "551744956322-qg8kjgu0h6iu28rc97jt7k1cep8pooid.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
