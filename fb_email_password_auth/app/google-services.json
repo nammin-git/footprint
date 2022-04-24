@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:551744956322:android:81dc74efe701cdf8a374fb",
         "android_client_info": {
-          "package_name": "om.mgprogect.fb_email_password_auth"
+          "package_name": "com.mgprogect.fb_email_password_auth"
         }
       },
       "oauth_client": [
