@@ -24,8 +24,8 @@ class MainActivity : AppCompatActivity() {
             val email = findViewById<EditText>(R.id.emailArea)
             val password = findViewById<EditText>(R.id.passwordArea)
 
-            Log.d("main", email.text.toString())
-            Log.d("main", password.text.toString())
+            Log.d("signup", email.text.toString())
+            Log.d("signup", password.text.toString())
 
             auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
                 .addOnCompleteListener(this) { task ->
@@ -37,9 +37,31 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
                     }
                 }
-
-
-
         }
+
+        val loginBtn = findViewById<Button>(R.id.loginBtn)
+        loginBtn.setOnClickListener {
+            val email = findViewById<EditText>(R.id.emailArea)
+            val password = findViewById<EditText>(R.id.passwordArea)
+
+            auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Toast.makeText(this, "성공", Toast.LENGTH_SHORT).show()
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
+                    }
+                }
+        }
+
+        val logoutBtn = findViewById<Button>(R.id.logoutBtn)
+        logoutBtn.setOnClickListener {
+            Firebase.auth.signOut()
+                Toast.makeText(this, "로그아웃 완료", Toast.LENGTH_SHORT).show()
+        }
+
+
     }
 }
