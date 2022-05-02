@@ -40,14 +40,18 @@ class SplashActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
 
                         Toast.makeText(this, "비회원 로그인 성공", Toast.LENGTH_SHORT).show()
+                        Log.d("Splash", "비회원 로그인 성공")
 
                         Handler().postDelayed({
                             startActivity(Intent(this, MainActivity::class.java))
                             finish()
-                        }, 3000)} else {
+                        }, 3000)
+                    } else {
                         Toast.makeText(this, "비회원 로그인 실패", Toast.LENGTH_SHORT).show()
+                        Log.d("Splash", "비회원 로그인 실패")
                     }
                 }
+
         }
 
 
