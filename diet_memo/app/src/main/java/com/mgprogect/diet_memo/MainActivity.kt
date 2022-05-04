@@ -11,6 +11,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.util.*
 
@@ -51,6 +52,19 @@ class MainActivity : AppCompatActivity() {
 
             }
 
+            //저장 버튼 만들기
+            val saveBtn = mAlertDialog.findViewById<Button>(R.id.saveBtn)
+            saveBtn?.setOnClickListener {
+
+                val database = Firebase.database
+                val myRef = database.getReference("message")
+
+                //데이터 한 번만 넣으려면
+                //myRef.setValue("Hello, World!")
+                //계속 데이터를 넣으려면
+                myRef.push().setValue("Hello, World!")
+
+            }
 
         }
 
