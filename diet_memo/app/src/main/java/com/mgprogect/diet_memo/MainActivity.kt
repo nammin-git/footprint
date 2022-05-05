@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.DatePicker
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
@@ -34,6 +35,8 @@ class MainActivity : AppCompatActivity() {
 
             val dateSelectBtn = mAlertDialog.findViewById<Button>(R.id.dateSelectBtn)
 
+            var dateText = ""
+
             //날짜를 선택할 수 있는 다이얼로그 만들기
             dateSelectBtn?.setOnClickListener {
 
@@ -46,6 +49,8 @@ class MainActivity : AppCompatActivity() {
                     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
                         Log.d("Main", "${year}, ${month+1}, ${dayOfMonth}")
                         dateSelectBtn.setText("${year}, ${month+1}, ${dayOfMonth}")
+
+                        dateText = "${year}, ${month+1}, ${dayOfMonth}"
                     }
                 }, year, month, date)
                 dlg.show()
@@ -56,13 +61,17 @@ class MainActivity : AppCompatActivity() {
             val saveBtn = mAlertDialog.findViewById<Button>(R.id.saveBtn)
             saveBtn?.setOnClickListener {
 
+                val healthMemo = mAlertDialog.findViewById<EditText>(R.id.healthMemo)?.text.toString()
+
                 val database = Firebase.database
-                val myRef = database.getReference("message")
+                val myRef = database.getReference("my memo")
+
+                val model = DataModel(dateText, healthMemo)
 
                 //데이터 한 번만 넣으려면
                 //myRef.setValue("Hello, World!")
                 //계속 데이터를 넣으려면
-                myRef.push().setValue("Hello, World!")
+                myRef.push().setValue(model)
 
             }
 
