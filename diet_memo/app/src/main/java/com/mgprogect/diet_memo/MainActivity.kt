@@ -12,6 +12,9 @@ import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.util.*
@@ -23,6 +26,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val database = Firebase.database
+        val myRef = database.getReference("my memo")
+        
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                //snapshot 에 모든 데이터를 다 가져옴
+                for(dataModel in snapshot.children) {
+                    Log.d("Data", dataModel.toString())
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+        
         val writeBtn = findViewById<ImageView>(R.id.writeBtn)
         writeBtn.setOnClickListener {
             //dialog를 띄우는 코드(22~27)
@@ -63,6 +83,7 @@ class MainActivity : AppCompatActivity() {
 
                 val healthMemo = mAlertDialog.findViewById<EditText>(R.id.healthMemo)?.text.toString()
 
+                //reference 주소 부분
                 val database = Firebase.database
                 val myRef = database.getReference("my memo")
 
@@ -72,6 +93,8 @@ class MainActivity : AppCompatActivity() {
                 //myRef.setValue("Hello, World!")
                 //계속 데이터를 넣으려면
                 myRef.push().setValue(model)
+
+                mAlertDialog.dismiss()
 
             }
 
