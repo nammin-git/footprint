@@ -5,10 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.ImageView
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -21,6 +18,8 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+    val dataModelList = mutableListOf<DataModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -28,13 +27,23 @@ class MainActivity : AppCompatActivity() {
 
         val database = Firebase.database
         val myRef = database.getReference("my memo")
-        
-        myRef.addValueEventListener(object : ValueEventListener {
+
+        //데이터를 리스트뷰에 연결
+        val listView = findViewById<ListView>(R.id.mainLV)
+
+        //리스트뷰와 메인 액티비티를 연결해줄 어댑터
+        val adapterList = listViewAdapter(dataModelList)
+
+        listView.adapter = adapterList
+
+       myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 //snapshot 에 모든 데이터를 다 가져옴
                 for(dataModel in snapshot.children) {
                     Log.d("Data", dataModel.toString())
+                    dataModelList.add(dataModel.getValue(DataModel::class.java)!!)
                 }
+                Log.d("DataModel", dataModelList.toString())
             }
 
             override fun onCancelled(error: DatabaseError) {
