@@ -36,13 +36,20 @@ class MainActivity : AppCompatActivity() {
 
         listView.adapter = adapterList
 
+        //데이터모델에 뭐 들어있는지 알아보기 위한 로그
+        Log.d("DataModel------", dataModelList.toString())
+
        myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                //예전 데이터 리스트뷰가 중복되어 안 나오게 함
+                dataModelList.clear()
                 //snapshot 에 모든 데이터를 다 가져옴
                 for(dataModel in snapshot.children) {
                     Log.d("Data", dataModel.toString())
                     dataModelList.add(dataModel.getValue(DataModel::class.java)!!)
                 }
+                //데이터가 새롭게 들어오면 리스트뷰도 새롭게 만들어주는 코드
+                adapterList.notifyDataSetChanged()
                 Log.d("DataModel", dataModelList.toString())
             }
 
