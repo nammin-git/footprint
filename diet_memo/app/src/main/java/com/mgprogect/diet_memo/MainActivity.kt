@@ -39,7 +39,8 @@ class MainActivity : AppCompatActivity() {
         //데이터모델에 뭐 들어있는지 알아보기 위한 로그
         Log.d("DataModel------", dataModelList.toString())
 
-       myRef.addValueEventListener(object : ValueEventListener {
+        //.child(~) 추가 -> uid 기반으로 정보를 찾아오기기
+       myRef.child(Firebase.auth.currentUser!!.uid).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 //예전 데이터 리스트뷰가 중복되어 안 나오게 함
                 dataModelList.clear()
@@ -101,7 +102,8 @@ class MainActivity : AppCompatActivity() {
 
                 //reference 주소 부분
                 val database = Firebase.database
-                val myRef = database.getReference("my memo")
+                //child(~) 부분 = 나에게만 내 정보를 가져오게함
+                val myRef = database.getReference("my memo").child(Firebase.auth.currentUser!!.uid)
 
                 val model = DataModel(dateText, healthMemo)
 
