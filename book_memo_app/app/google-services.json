@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "382199495337",
+    "project_id": "book-memo-app",
+    "storage_bucket": "book-memo-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:382199495337:android:d703e118e0476ab83f87b8",
+        "android_client_info": {
+          "package_name": "com.mgprogect.memo_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "382199495337-37l1kpc43r6ok6ftv632hcsupsu49l7o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnsi3YnStl8CNmtqkaV-Ft0O0UVIptij0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "382199495337-37l1kpc43r6ok6ftv632hcsupsu49l7o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
