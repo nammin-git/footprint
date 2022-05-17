@@ -21,7 +21,7 @@ class SplashActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         try {
-            Log.d("Spalsh", auth.currentUser?.uid.toString())
+            Log.d("Splash", auth.currentUser?.uid.toString())
             Log.d("Splash", "이미 로그인 된 회원입니다.")
 
             Handler().postDelayed({

@@ -1,4 +1,4 @@
-package com.mgprogect.memo_app
+package com.mgprogect.book_memo_app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
