@@ -48,11 +48,11 @@
         app:layout_constraintTop_toBottomOf="@+id/banner" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/add_button"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:background="@color/bright_gray"
+        android:layout_height="55dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/bright_gray"
         app:layout_constraintTop_toBottomOf="@+id/line_under_banner"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
