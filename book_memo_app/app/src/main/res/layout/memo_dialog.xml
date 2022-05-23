@@ -53,6 +53,23 @@
         android:backgroundTint="@color/bright_gray"
         android:fontFamily="@font/suncheon_b"
         android:textColor="@color/middle_gray"
-        android:layout_margin="20dp"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"/>
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="저장하기"
+        android:textSize="15dp"
+        android:backgroundTint="@color/bright_gray"
+        android:fontFamily="@font/suncheon_b"
+        android:textColor="@color/middle_gray"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"/>
 
 </LinearLayout>
