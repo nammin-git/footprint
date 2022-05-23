@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.DatePicker
 import androidx.appcompat.app.AlertDialog
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -45,8 +47,23 @@ class MainActivity : AppCompatActivity() {
                 }, year, month, date)
 
                 dlg.show()
-
             }
+
+            //저장하기 버튼을 만들면 리얼타임 데이터베이스에 저장
+            val saveBtn = findViewById<Button>(R.id.saveBtn)
+            saveBtn.setOnClickListener {
+
+                val database = Firebase.database
+                val myRef = database.getReference("message")
+
+                //setValue 속에 데이터가 저장됨
+                //데이터가 없으면 넣고 있으면 수정되는 버전
+                myRef.setValue("Hello, World!")
+
+                //데이터를 계속해서 추가하는 버전
+               myRef.push().setValue("")
+            }
+
         }
 
     }
