@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
     <EditText
+        android:id="@+id/bookTitle"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:hint="책 제목을 입력해주세요"
@@ -22,6 +23,7 @@
         android:background="@android:color/transparent" />
 
     <EditText
+        android:id="@+id/bookMemo"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginLeft="20dp"
