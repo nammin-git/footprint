@@ -5,19 +5,47 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.OneShotPreDrawListener.add
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
+    private val dataModelList = MutableList<DataModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val database = Firebase.database
+        val myRef = database.getReference("bookMemo")
+
+        val listView = findViewById<ListView>(R.id.mainLV)
+        val adapter = ListViewAdapter(dataModelList)
+
+
+        //데이터 불러오기
+        myRef.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                for(dataModel in snapshot.children) {
+                    Log.d("Data", dataModel.toString())
+                    dataModelList.add(dataModel.getValue(DataModel::class.java)!!)
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+
 
         val addButton = findViewById<Button>(R.id.add_button)
         addButton.setOnClickListener {
@@ -67,9 +95,6 @@ class MainActivity : AppCompatActivity() {
                 //editText에 저장된 책 제목과 메모 내용을 데이터베이스에 저장함
                 val bookTitle = mAlertDialog.findViewById<EditText>(R.id.bookTitle)?.text.toString()
                 val bookMemo = mAlertDialog.findViewById<EditText>(R.id.bookMemo)?.text.toString()
-
-                val database = Firebase.database
-                val myRef = database.getReference("bookMemo")
 
                 //setValue 속에 데이터가 저장됨
                 //데이터가 없으면 넣고 있으면 수정되는 버전
