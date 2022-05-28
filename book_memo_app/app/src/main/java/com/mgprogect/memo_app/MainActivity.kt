@@ -17,7 +17,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val dataModelList = MutableList<DataModel>()
+    private val dataModelList = mutableListOf<DataModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +27,8 @@ class MainActivity : AppCompatActivity() {
         val myRef = database.getReference("bookMemo")
 
         val listView = findViewById<ListView>(R.id.mainLV)
-        val adapter = ListViewAdapter(dataModelList)
+        val adapter_main = ListViewAdapter(dataModelList)
+        listView.adapter = adapter_main
 
 
         //데이터 불러오기
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
                     Log.d("Data", dataModel.toString())
                     dataModelList.add(dataModel.getValue(DataModel::class.java)!!)
                 }
+                Log.d("DataModel", dataModelList.toString())
 
             }
 
