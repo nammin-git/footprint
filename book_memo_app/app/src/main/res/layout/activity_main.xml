@@ -59,9 +59,10 @@
         android:drawableTop="@drawable/icon_plus"/>
 
     <ListView
+        android:id="@+id/mainLV"
         android:layout_width="match_parent"
         android:layout_height="550dp"
         android:layout_margin="20dp"
         app:layout_constraintTop_toBottomOf="@+id/add_button" />
-    
+
 </androidx.constraintlayout.widget.ConstraintLayout>
