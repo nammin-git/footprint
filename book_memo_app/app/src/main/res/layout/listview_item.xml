@@ -5,20 +5,22 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/listviewDateArea"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="date"
-        android:textSize="38dp"
-        android:layout_margin="10dp"
-        />
-
-    <TextView
         android:id="@+id/listviewTitleArea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="책 제목"
+        android:textSize="24dp"
+        android:fontFamily="@font/sangju_gotgam"
+        android:layout_margin="10dp"
+        />
+
+    <TextView
+        android:id="@+id/listviewDateArea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="date"
         android:textSize="15dp"
+        android:fontFamily="@font/sangju_gotgam"
         android:layout_margin="10dp"
         />
 
