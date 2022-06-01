@@ -34,11 +34,14 @@ class MainActivity : AppCompatActivity() {
         //데이터 불러오기
         myRef.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
+                dataModelList.clear()
 
                 for(dataModel in snapshot.children) {
                     Log.d("Data", dataModel.toString())
                     dataModelList.add(dataModel.getValue(DataModel::class.java)!!)
                 }
+                //데이터 모델에 값이 들어가고 나면 새롭게 리스트뷰를 만들어줘라 ... 비동기
+                adapter_main.notifyDataSetChanged()
                 Log.d("DataModel", dataModelList.toString())
 
             }
