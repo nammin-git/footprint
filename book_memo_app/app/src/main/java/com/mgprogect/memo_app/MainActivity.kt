@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.OneShotPreDrawListener.add
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val database = Firebase.database
-        val myRef = database.getReference("bookMemo")
+        val myRef = database.getReference("bookMemo").child(Firebase.auth.currentUser!!.uid)
 
         val listView = findViewById<ListView>(R.id.mainLV)
         val adapter_main = ListViewAdapter(dataModelList)
@@ -43,6 +44,8 @@ class MainActivity : AppCompatActivity() {
                 //데이터 모델에 값이 들어가고 나면 새롭게 리스트뷰를 만들어줘라 ... 비동기
                 adapter_main.notifyDataSetChanged()
                 Log.d("DataModel", dataModelList.toString())
+
+                //스크롤 구현이 필요함
 
             }
 
