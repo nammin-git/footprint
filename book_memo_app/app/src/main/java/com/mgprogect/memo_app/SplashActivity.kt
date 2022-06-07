@@ -21,9 +21,6 @@ class SplashActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         try {
-            Log.d("Check Login", auth.currentUser?.uid.toString())
-            Log.d("Check Login", "이미 로그인 된 회원입니다.")
-
             Toast.makeText(this, "이미 로그인 된 회원입니다.",
                 Toast.LENGTH_SHORT).show()
 

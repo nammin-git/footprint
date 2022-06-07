@@ -7,8 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
-import androidx.core.view.OneShotPreDrawListener.add
-import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.*
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -25,11 +24,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val database = Firebase.database
-        val myRef = database.getReference("bookMemo").child(Firebase.auth.currentUser!!.uid)
+        val myRef = database.getReference("bookMemo")
 
         val listView = findViewById<ListView>(R.id.mainLV)
-        val adapter_main = ListViewAdapter(dataModelList)
-        listView.adapter = adapter_main
+        val adapterMain = ListViewAdapter(dataModelList)
+        listView.adapter = adapterMain
 
 
         //데이터 불러오기
@@ -38,14 +37,10 @@ class MainActivity : AppCompatActivity() {
                 dataModelList.clear()
 
                 for(dataModel in snapshot.children) {
-                    Log.d("Data", dataModel.toString())
                     dataModelList.add(dataModel.getValue(DataModel::class.java)!!)
                 }
                 //데이터 모델에 값이 들어가고 나면 새롭게 리스트뷰를 만들어줘라 ... 비동기
-                adapter_main.notifyDataSetChanged()
-                Log.d("DataModel", dataModelList.toString())
-
-                //스크롤 구현이 필요함
+                adapterMain.notifyDataSetChanged()
 
             }
 
@@ -81,8 +76,7 @@ class MainActivity : AppCompatActivity() {
                 val dlg = DatePickerDialog(this, object : DatePickerDialog.OnDateSetListener {
                     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int
                     ) {
-                        Log.d("main", "${year}, ${month + 1}, ${dayOfMonth}")
-                        dateSelectBtn?.setText("${year}, ${month + 1}, ${dayOfMonth}")
+                        dateSelectBtn.setText("${year}, ${month + 1}, ${dayOfMonth}")
 
                         //날짜를 선택하면 dateText의 값이 변경됨
                         dateText = "${year}, ${month + 1}, ${dayOfMonth}"
@@ -98,22 +92,22 @@ class MainActivity : AppCompatActivity() {
             val saveBtn = mAlertDialog.findViewById<Button>(R.id.saveBtn)
             saveBtn?.setOnClickListener {
 
-                Toast.makeText(this,"saveBtn reaction", Toast.LENGTH_LONG)
+                Log.d("saveBtn", "SaveBtn reaction")
 
                 //editText에 저장된 책 제목과 메모 내용을 데이터베이스에 저장함
                 val bookTitle = mAlertDialog.findViewById<EditText>(R.id.bookTitle)?.text.toString()
                 val bookMemo = mAlertDialog.findViewById<EditText>(R.id.bookMemo)?.text.toString()
 
-                //setValue 속에 데이터가 저장됨
-                //데이터가 없으면 넣고 있으면 수정되는 버전
-                //myRef.setValue("Hello, World!")
+                Log.d("saveBtn", "converting the data")
 
-                //데이터를 계속해서 추가하는 버전
-                //myRef.push().setValue("")
+                val databaseSavepoint = Firebase.database
+                val myRefSavepoint = databaseSavepoint.getReference("bookMemo")
+
+                Log.d("saveBtn", Firebase.auth.currentUser?.uid.toString())
 
                 val model = DataModel(dateText, bookTitle, bookMemo)
 
-                myRef
+                myRefSavepoint
                     .push()
                     .setValue(model)
 
