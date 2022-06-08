@@ -21,8 +21,8 @@ class SplashActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         try {
-            Toast.makeText(this, "이미 로그인 된 회원입니다.",
-                Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "이미 로그인 된 회원입니다.", Toast.LENGTH_SHORT).show()
+            Log.d("login", FirebaseAuth.getInstance().currentUser?.uid.toString())
 
             Handler().postDelayed({
                 startActivity(Intent(this, MainActivity::class.java))

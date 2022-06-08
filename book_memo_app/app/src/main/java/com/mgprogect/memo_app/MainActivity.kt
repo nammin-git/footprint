@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.*
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -100,10 +101,11 @@ class MainActivity : AppCompatActivity() {
 
                 Log.d("saveBtn", "converting the data")
 
+                val user = Firebase.auth.currentUser
                 val database = Firebase.database
                 val myRef = database.getReference("bookMemo")
 
-                Log.d("saveBtn", Firebase.auth.currentUser?.uid.toString())
+                Log.d("saveBtn", user?.uid.toString())
 
                 val model = DataModel(dateText, bookTitle, bookMemo)
 
