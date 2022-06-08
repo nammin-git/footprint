@@ -100,14 +100,14 @@ class MainActivity : AppCompatActivity() {
 
                 Log.d("saveBtn", "converting the data")
 
-                val databaseSavepoint = Firebase.database
-                val myRefSavepoint = databaseSavepoint.getReference("bookMemo")
+                val database = Firebase.database
+                val myRef = database.getReference("bookMemo")
 
                 Log.d("saveBtn", Firebase.auth.currentUser?.uid.toString())
 
                 val model = DataModel(dateText, bookTitle, bookMemo)
 
-                myRefSavepoint
+                myRef
                     .push()
                     .setValue(model)
 
