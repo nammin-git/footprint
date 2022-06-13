@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
 
         //데이터 불러오기
-        myRef.addValueEventListener(object : ValueEventListener{
+        myRef.child(Firebase.auth.currentUser!!.uid).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 dataModelList.clear()
 
@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
 
                 val user = Firebase.auth.currentUser
                 val database = Firebase.database
-                val myRef = database.getReference("bookMemo")
+                val myRef = database.getReference("bookMemo").child(Firebase.auth.currentUser!!.uid)
 
                 Log.d("saveBtn", user?.uid.toString())
 
