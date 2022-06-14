@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val database = Firebase.database
-        val myRef = database.getReference("bookMemo")
+        val myRef = database.getReference("bookMemo").child(Firebase.auth.currentUser!!.uid)
 
         val listView = findViewById<ListView>(R.id.mainLV)
         val adapterMain = ListViewAdapter(dataModelList)
