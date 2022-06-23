@@ -3,6 +3,7 @@ package com.mgprogect.bluelight_filter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings.System.SCREEN_BRIGHTNESS
+import android.util.Log
 import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
@@ -33,15 +34,15 @@ class MainActivity : AppCompatActivity() {
         seekbar.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                TODO("Not yet implemented")
+                Log.d("SeekBar","onProgressChanged 값 변경 중 : progress [${progress}], fromUser [${fromUser}]")
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                TODO("Not yet implemented")
+                Log.d("SeekBar","onStartTrackingTouch 값 변경 시작 : progress [${seekBar?.progress}]")
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                Toast.makeText(this@MainActivity, "Progress is : "+seekbar.progress+"&", Toast.LENGTH_LONG).show()
+                Log.d("SeekBar","onStopTrackingTouch 값 변경 종료 : progress [${seekBar?.progress}]")
             }
             }
         )
