@@ -1,20 +1,30 @@
 package com.mgprogect.mango
 
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class RVAdapter() : RecyclerView.Adapter<RVAdapter.ViewHolder>() {
+class RVAdapter(val List : MutableList<ContentModel>) : RecyclerView.Adapter<RVAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RVAdapter.ViewHolder {
-        TODO("Not yet implemented")
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.rv_items, parent, false)
+
+        return ViewHolder(v)
     }
 
     override fun onBindViewHolder(holder: RVAdapter.ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bindItems(List[position])
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return List.size
     }
 
+    inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+
+        fun bindItems(item : ContentModel) {
+
+        }
+    }
 
 }
