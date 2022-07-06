@@ -3,6 +3,8 @@ package com.mgprogect.mango
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class RVAdapter(val List : MutableList<ContentModel>) : RecyclerView.Adapter<RVAdapter.ViewHolder>() {
@@ -23,7 +25,10 @@ class RVAdapter(val List : MutableList<ContentModel>) : RecyclerView.Adapter<RVA
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindItems(item : ContentModel) {
+            val rv_img = itemView.findViewById<ImageView>(R.id.rvImageArea)
+            val rv_text = itemView.findViewById<TextView>(R.id.rvTextArea)
 
+            rv_text.text = item.titleText
         }
     }
 
