@@ -40,10 +40,9 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-
         //리사이클러뷰 연결
         val recyclerview = findViewById<RecyclerView>(R.id.rv)
-        val rvAdapter = RVAdapter(items)
+        val rvAdapter = RVAdapter(baseContext, items)
         recyclerview.adapter = rvAdapter
 
         //그리드레이아웃 적용
