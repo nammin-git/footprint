@@ -1,13 +1,15 @@
 package com.mgprogect.mango
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
-class RVAdapter(val List : MutableList<ContentModel>) : RecyclerView.Adapter<RVAdapter.ViewHolder>() {
+class RVAdapter(val context : Context, val List : MutableList<ContentModel>) : RecyclerView.Adapter<RVAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RVAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.rv_items, parent, false)
 
@@ -29,6 +31,11 @@ class RVAdapter(val List : MutableList<ContentModel>) : RecyclerView.Adapter<RVA
             val rv_text = itemView.findViewById<TextView>(R.id.rvTextArea)
 
             rv_text.text = item.titleText
+
+            //웹에서 가져온 url 넣기
+            Glide.with(context)
+                .load(item.imageUrl)
+                .into(rv_img)
         }
     }
 
