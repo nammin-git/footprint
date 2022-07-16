@@ -1,7 +1,9 @@
 package com.mgprogect.mango
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -76,6 +78,15 @@ class MainActivity : AppCompatActivity() {
         val recyclerview = findViewById<RecyclerView>(R.id.rv)
         val rvAdapter = RVAdapter(baseContext, items)
         recyclerview.adapter = rvAdapter
+
+        rvAdapter.itemClick = object : RVAdapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+                //아이템이 클릭되면 새로운 액티비티로 넘겨줌
+                val intent = Intent(baseContext, ViewActivity::class.java)
+                startActivity(intent)
+            }
+
+        }
 
         //그리드레이아웃 적용
         recyclerview.layoutManager = GridLayoutManager(this, 2)
