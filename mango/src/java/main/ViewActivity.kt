@@ -9,7 +9,9 @@ class ViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view)
 
+
+
         val webView = findViewById<WebView>(R.id.wb)
-        webView.loadUrl("https://www.mangoplate.com/restaurants/eLq_Q72bscee")
+        webView.loadUrl(intent.getStringExtra("url").toString())
     }
 }
