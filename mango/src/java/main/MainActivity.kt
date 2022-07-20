@@ -83,6 +83,7 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(view: View, position: Int) {
                 //아이템이 클릭되면 새로운 액티비티로 넘겨줌
                 val intent = Intent(baseContext, ViewActivity::class.java)
+                intent.putExtra("url", items[position].url)
                 startActivity(intent)
             }
 
