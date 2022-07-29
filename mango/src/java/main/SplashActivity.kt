@@ -27,11 +27,10 @@ class SplashActivity : AppCompatActivity() {
             }, 3000)
         } else {
             //회원가입o -> JMainActivity로 이동
+            Handler().postDelayed({
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }, 3000)
         }
-
-        Handler().postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }, 3000)
     }
 }
