@@ -1,6 +1,7 @@
 package com.mgprogect.mango
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -31,9 +32,11 @@ class SignupActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
                     } else {
                         // If sign in fails, display a message to the user.
-                        Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                        Log.w("SIGNUPActivity", "createUserWithEmail:failure", task.exception)
 
                     }
                 }
