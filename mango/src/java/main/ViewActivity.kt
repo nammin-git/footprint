@@ -3,6 +3,7 @@ package com.mgprogect.mango
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.WebView
+import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
@@ -31,9 +32,13 @@ class ViewActivity : AppCompatActivity() {
         val titleText = intent.getStringExtra("titleText").toString()
         val imageUrl = intent.getStringExtra("imageUrl").toString()
 
-        myBookmarkRef
-            .child(auth.currentUser!!.uid)
-            .setValue(ContentModel(url, imageUrl, titleText))
+        val saveText = findViewById<TextView>(R.id.saveText)
+        saveText.setOnClickListener {
+            myBookmarkRef
+                .child(auth.currentUser!!.uid)
+                .push()
+                .setValue(ContentModel(url, imageUrl, titleText))
+        }
 
     }
 }
