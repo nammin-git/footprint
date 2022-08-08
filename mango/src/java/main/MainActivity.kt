@@ -84,6 +84,8 @@ class MainActivity : AppCompatActivity() {
                 //아이템이 클릭되면 새로운 액티비티로 넘겨줌
                 val intent = Intent(baseContext, ViewActivity::class.java)
                 intent.putExtra("url", items[position].url)
+                intent.putExtra("title", items[position].titleText)
+                intent.putExtra("imageUrl", items[position].imageUrl)
                 startActivity(intent)
             }
 
