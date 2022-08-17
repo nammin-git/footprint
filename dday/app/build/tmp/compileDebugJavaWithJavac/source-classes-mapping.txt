@@ -1,0 +1,2 @@
+com/mgprogect/dday/BuildConfig.java
+ com.mgprogect.dday.BuildConfig
