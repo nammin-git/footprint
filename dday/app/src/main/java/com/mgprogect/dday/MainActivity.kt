@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.DatePicker
+import android.widget.TextView
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -52,6 +53,10 @@ class MainActivity : AppCompatActivity() {
                 }
 
             }, year, month, date)
+
+
+            val textArea = findViewById<TextView>(R.id.dateText)
+            textArea.setText((endDate.toInt() - startDate.toInt() + 1).toString())
 
         }
 
