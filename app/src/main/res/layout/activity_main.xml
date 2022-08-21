@@ -68,7 +68,44 @@
         android:layout_margin="10dp"
         android:background="@drawable/border_custom"
         app:layout_constraintTop_toBottomOf="@+id/line_under_header"
-        tools:layout_editor_absoluteX="16dp">
+        tools:layout_editor_absoluteX="16dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="여행"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_margin="10dp" />
+
+            <TextView
+                android:id="@+id/start_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text=""
+                android:textSize="16sp"
+                android:hint="날짜를 선택하세요"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/day_count"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text=""
+            android:textStyle="bold"
+            android:textSize="40sp"
+            android:gravity="center"
+            android:background="@drawable/border_custom"
+            android:backgroundTint="@color/light_gray" />
 
     </LinearLayout>
 
